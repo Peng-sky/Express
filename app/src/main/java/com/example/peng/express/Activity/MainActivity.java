@@ -11,6 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.peng.express.R;
+import com.example.peng.express.Service.DemoIntentService;
+import com.example.peng.express.Service.PushService;
+import com.igexin.sdk.PushManager;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private EditText et_search;
@@ -22,6 +25,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+
+        PushManager.getInstance().initialize(this.getApplicationContext(), PushService.class);
     }
 
     private void initView() {
@@ -50,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_finish_send.setOnClickListener(this);
         tv_freight.setOnClickListener(this);
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){

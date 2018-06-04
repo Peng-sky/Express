@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.peng.express.R;
+import com.example.peng.express.Service.DemoIntentService;
+import com.igexin.sdk.PushManager;
 
 public class SearchActivity extends AppCompatActivity {
     private ImageView img_back;
@@ -15,6 +17,7 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         initView();
+        PushManager.getInstance().initialize(this.getApplicationContext(), DemoIntentService.class);
     }
 
     private void initView() {

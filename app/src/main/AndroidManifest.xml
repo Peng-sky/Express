@@ -49,6 +49,8 @@
             android:label="PushService"
             android:process=":pushservice">
         </service>
+
+        <service android:name=".Service.DemoIntentService"/>
     </application>
 
 </manifest>
