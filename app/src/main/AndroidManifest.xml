@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.peng.express">
+
+    <!--ACCESS_FINE_LOCATION：允许APP访问精确地理位置。-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!--ACCESS_COARSE_LOCATION：允许APP访问大概地理位置-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.WRITE_SMS"/>
+    <!-- iBeancon功能所需权限 -->;
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Activity.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity.MainActivity"/>
+        <activity android:name=".Activity.OrderSendActivity"/>
+        <activity android:name=".Activity.ModifyPasswordActivity"/>
+        <activity android:name=".Activity.FindPasswordActivity"/>
+        <activity android:name=".Activity.MyselfActivity"/>
+        <activity android:name=".Activity.SearchActivity"/>
+        <activity android:name=".Activity.SenderAddressActivity"/>
+        <activity android:name=".Activity.DirectionActivity"/>
+        <activity android:name=".Activity.ModifyActivity"/>
+        <activity android:name=".Activity.PackageActivity"/>
+        <activity android:name=".Activity.RegisterActivity"/>
+        <activity android:name=".Activity.WriteUserInfoActivity"/>
+        <activity android:name=".Activity.FreightActivity"/>
+
+        <service android:name=".Service.PushService"
+            android:exported="true"
+            android:label="PushService"
+            android:process=":pushservice">
+        </service>
+    </application>
+
+</manifest>
