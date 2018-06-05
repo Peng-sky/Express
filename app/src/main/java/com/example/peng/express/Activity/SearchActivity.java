@@ -17,11 +17,9 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         initView();
-        PushManager.getInstance().initialize(this.getApplicationContext(), DemoIntentService.class);
     }
 
     private void initView() {
-
         img_back = findViewById(R.id.img_back);
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override

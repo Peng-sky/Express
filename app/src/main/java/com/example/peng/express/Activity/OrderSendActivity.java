@@ -77,6 +77,7 @@ public class OrderSendActivity extends AppCompatActivity implements View.OnClick
         et_package_amount.setFocusable(false);
         cb_agree = findViewById(R.id.cb_agree);
         btn_send_confirm = findViewById(R.id.btn_send_confirm);
+        btn_send_confirm.setOnClickListener(this);
         linear_direction = findViewById(R.id.linear_direction);
         linear_address  =findViewById(R.id.linear_address);
 
@@ -211,21 +212,22 @@ public class OrderSendActivity extends AppCompatActivity implements View.OnClick
         });
     }
 
-    private void SendHttp(){
-        RequestBody body = RequestBody.create(JSON, "");
-//        String url, Object tag, Map<String, String> params, Map<String, String> headers,int id
-        OkHttpRequest request = new OkHttpRequest(IP,null,null,null,1) {
-            @Override
-            protected RequestBody buildRequestBody() {
-                return null;
-            }
+//    private void SendHttp(){
+//        RequestBody body = RequestBody.create(JSON, "");
+////        String url, Object tag, Map<String, String> params, Map<String, String> headers,int id
+//        OkHttpRequest request = new OkHttpRequest(IP,null,null,null,1) {
+//            @Override
+//            protected RequestBody buildRequestBody() {
+//                return null;
+//            }
+//
+//            @Override
+//            protected Request buildRequest(RequestBody requestBody) {
+//                return null;
+//            }
+//        };
+//    }
 
-            @Override
-            protected Request buildRequest(RequestBody requestBody) {
-                return null;
-            }
-        };
-    }
 
     @Override
     public void onClick(View v) {
@@ -266,7 +268,14 @@ public class OrderSendActivity extends AppCompatActivity implements View.OnClick
                     count3+=1;
                     et_package_amount.setText(count3+"");
                 break;
+            case R.id.btn_send_confirm:
+                showTransmission();
+                break;
         }
+    }
+
+    private void showTransmission() {
+
     }
 
     @Override

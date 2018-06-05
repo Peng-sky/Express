@@ -11,7 +11,19 @@ import com.igexin.sdk.message.GTCmdMessage;
 import com.igexin.sdk.message.GTNotificationMessage;
 import com.igexin.sdk.message.GTTransmitMessage;
 
+
+/**
+ * 继承 GTIntentService 接收来自个推的消息, 所有消息在线程中回调, 如果注册了该服务, 则务必要在 AndroidManifest中声明, 否则无法接受消息<br>
+ * onReceiveMessageData 处理透传消息<br>
+ * onReceiveClientId 接收 cid <br>
+ * onReceiveOnlineState cid 离线上线通知 <br>
+ * onReceiveCommandResult 各种事件处理回执 <br>
+ */
 public class DemoIntentService extends GTIntentService {
+    /**
+     * 为了观察透传消息
+     */
+    private static int cnt;
 
     public DemoIntentService(){
     }
@@ -21,7 +33,7 @@ public class DemoIntentService extends GTIntentService {
 
     @Override
     public void onReceiveClientId(Context context, String s) {
-        Log.e(TAG, "onReceiveClientId -> " + "clientid = " + s);
+        Log.e(TAG, "onReceiveClientId -> " + "clientId = " + s);
     }
 
     @Override
