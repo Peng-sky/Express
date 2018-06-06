@@ -13,13 +13,18 @@
         android:gravity="center"
         android:orientation="horizontal">
 
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@mipmap/send"/>
+
         <TextView
             android:id="@+id/tv_send_address"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="寄件地址"
-            android:gravity="center"
+            android:layout_weight="1"
+            android:gravity="left"
             android:textSize="24sp"
             android:visibility="visible"/>
 
@@ -27,7 +32,6 @@
             android:id="@+id/linear_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:orientation="vertical"
             android:visibility="gone">
 
@@ -54,11 +58,11 @@
         <ImageView
 
             android:id="@+id/img_sender_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_weight="1"
             android:layout_gravity="center"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@mipmap/add_sender"/>
     </LinearLayout>
 
     <TextView
@@ -75,13 +79,18 @@
         android:gravity="center"
         android:orientation="horizontal">
 
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@mipmap/collect"/>
+
         <TextView
            android:id="@+id/tv_addresses"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="收件地址"
-            android:gravity="center"
+            android:gravity="left"
             android:textSize="24sp"
             android:visibility="visible"/>
 
@@ -115,22 +124,17 @@
 
         <ImageView
             android:id="@+id/img_addressee_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_weight="1"
             android:layout_gravity="center"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@mipmap/add_sender"/>
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#111"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
 
     <LinearLayout
         android:layout_width="match_parent"
