@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         linear_post_express = findViewById(R.id.linear_post_express);
         linear_package = findViewById(R.id.linear_package);
         linear_myself = findViewById(R.id.linear_myself);
+        /**/
 
         MainPageFragment mainPageFragment = new MainPageFragment();
         MainSelfFragment selfFragment= new MainSelfFragment();
