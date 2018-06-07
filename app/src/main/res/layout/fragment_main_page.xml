@@ -2,12 +2,12 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.7"
         android:background="#ffffff"
         android:gravity="center">
 
@@ -91,16 +91,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.3"
+        android:layout_height="150dp"
         android:background="#fccccc">
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="100dp"
         android:gravity="center"
         android:padding="20dp"
         android:orientation="horizontal">
@@ -116,7 +114,7 @@
             android:id="@+id/tv_uncollected_package"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:layout_weight="1"
             android:text="未收包裹"/>
 
@@ -137,7 +135,7 @@
             android:id="@+id/tv_finish_send"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:layout_weight="1"
             android:text="完成派送"/>
 
@@ -145,10 +143,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_weight="0.3"
         android:background="@drawable/shape_btn_login"
         android:orientation="horizontal">
 
@@ -175,21 +172,12 @@
             android:src="@mipmap/scan" />
     </LinearLayout>
 
-
-    <LinearLayout
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.7"
-        android:gravity="center"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
         android:padding="20dp">
 
-        <ListView
-            android:id="@+id/list_main_page"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    </ListView>
 
-        </ListView>
 
-    </LinearLayout>
 </LinearLayout>

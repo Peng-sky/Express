@@ -1,42 +1,41 @@
-package com.example.peng.express.Activity;
+package com.example.peng.express.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.example.peng.express.Adapter.VpAdapter;
-import com.example.peng.express.Fragment.CompleteDeliveryFragment;
-import com.example.peng.express.Fragment.DeliveringFragment;
 import com.example.peng.express.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PackageActivity extends AppCompatActivity {
-    public TabLayout tab_package;
-    private ViewPager vp_package;
+public class PackageFragment extends Fragment{
     private List<Fragment> fragmentList;
     private List<String> list_title;
-    private Intent intent;
-
+    private TabLayout tab_package;
+    private ViewPager vp_package;
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_package);
-        initView();
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_package,null);
+        initView(view);
+        return view;
     }
 
-    private void initView() {
-        tab_package = findViewById(R.id.tab_package);
-        vp_package = findViewById(R.id.vp_package);
+    private void initView(View view) {
+        tab_package = view.findViewById(R.id.tab_package);
+        vp_package = view.findViewById(R.id.vp_package);
 
         CompleteDeliveryFragment completeDeliveryFragment = new CompleteDeliveryFragment();
         DeliveringFragment deliveringFragment = new DeliveringFragment();
-
         fragmentList = new ArrayList<>();
         fragmentList.add(deliveringFragment);
         fragmentList.add(completeDeliveryFragment);
@@ -45,12 +44,11 @@ public class PackageActivity extends AppCompatActivity {
         list_title.add("未完成");
         list_title.add("完成");
         tab_package.setTabMode(TabLayout.MODE_FIXED);
+
         tab_package.addTab(tab_package.newTab().setText(list_title.get(0)));
         tab_package.addTab(tab_package.newTab().setText(list_title.get(1)));
-//        int page = intent.getIntExtra("page",0);
-//        tab_package.getTabAt(page);
 
-        vp_package.setAdapter(new VpAdapter(this.getSupportFragmentManager(),fragmentList,list_title));
+        vp_package.setAdapter(new VpAdapter(this.getFragmentManager(),fragmentList,list_title));
 //        vp_package.setCurrentItem(page);
         tab_package.setupWithViewPager(vp_package);
     }

@@ -31,15 +31,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.MainActivity"/>
-        <activity android:name=".Activity.OrderSendActivity"/>
         <activity android:name=".Activity.ModifyPasswordActivity"/>
         <activity android:name=".Activity.FindPasswordActivity"/>
-        <activity android:name=".Activity.MyselfActivity"/>
         <activity android:name=".Activity.SearchActivity"/>
         <activity android:name=".Activity.SenderAddressActivity"/>
         <activity android:name=".Activity.DirectionActivity"/>
         <activity android:name=".Activity.ModifyActivity"/>
-        <activity android:name=".Activity.PackageActivity"/>
         <activity android:name=".Activity.RegisterActivity"/>
         <activity android:name=".Activity.WriteUserInfoActivity"/>
         <activity android:name=".Activity.FreightActivity"/>
