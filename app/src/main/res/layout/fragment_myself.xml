@@ -39,15 +39,37 @@
 
 
             <LinearLayout
+                android:id="@+id/line_modify"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/main_height"
+                android:background="@color/colorGrey"
+                android:padding="20dp">
+
+                <ImageView
+                    android:layout_width="@dimen/mark"
+                    android:layout_height="@dimen/mark"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/modify" />
+
+                <TextView
+                    android:id="@+id/tv_modify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="修改资料"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/line_sign_in"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/main_height"
                 android:padding="20dp"
                 android:background="@color/colorGrey">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="@dimen/mark"
+                    android:layout_height="@dimen/mark"
                     android:layout_gravity="center"
                     android:src="@mipmap/sign_in" />
 
@@ -62,13 +84,13 @@
             <LinearLayout
                 android:id="@+id/line_integral"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/main_height"
                 android:padding="20dp"
                 android:background="@color/colorGrey">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="@dimen/mark"
+                    android:layout_height="@dimen/mark"
                     android:layout_gravity="center"
                     android:src="@mipmap/integral" />
 
@@ -82,37 +104,15 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/line_modify"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:background="@color/colorGrey">
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:src="@mipmap/modify" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_modify"
-                    android:layout_gravity="center"
-                    android:text="修改资料"
-                    android:textSize="25sp" />
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/line_setting"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/main_height"
                 android:padding="20dp"
                 android:background="@color/colorGrey">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="@dimen/mark"
+                    android:layout_height="@dimen/mark"
                     android:layout_gravity="center"
                     android:src="@mipmap/setting" />
 
@@ -127,13 +127,13 @@
             <LinearLayout
                 android:id="@+id/sender"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/main_height"
                 android:padding="20dp"
                 android:background="@color/colorGrey">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="@dimen/mark"
+                    android:layout_height="@dimen/mark"
                     android:layout_gravity="center"
                     android:src="@mipmap/sender" />
 
@@ -148,13 +148,13 @@
             <LinearLayout
                 android:id="@+id/line_about"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/main_height"
                 android:padding="20dp"
                 android:background="@color/colorGrey">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="@dimen/mark"
+                    android:layout_height="@dimen/mark"
                     android:layout_gravity="center"
                     android:src="@mipmap/about" />
 
