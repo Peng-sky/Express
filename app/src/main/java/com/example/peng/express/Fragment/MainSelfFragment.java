@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.peng.express.R;
 
-public class MainSelfFragment extends Fragment {
+public class MainSelfFragment extends Fragment implements View.OnClickListener{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -22,6 +22,11 @@ public class MainSelfFragment extends Fragment {
     }
 
     private void initView(View view) {
+
+    }
+
+    @Override
+    public void onClick(View v) {
 
     }
 }

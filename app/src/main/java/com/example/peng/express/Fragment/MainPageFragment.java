@@ -1,7 +1,9 @@
 package com.example.peng.express.Fragment;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -65,9 +67,22 @@ public class MainPageFragment extends Fragment implements View.OnClickListener{
             case R.id.linear_contact_CS:break;
             case R.id.tv_uncollected_package:break;
             case R.id.tv_finish_send:break;
-            case R.id.img_scan:break;
+            case R.id.img_scan:
+                customScan();
+                break;
             case R.id.img_search:break;
             case R.id.et_search:break;
         }
+    }
+
+    public void customScan(){
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent,0x0001);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
     }
 }

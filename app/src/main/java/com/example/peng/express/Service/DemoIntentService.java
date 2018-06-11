@@ -5,6 +5,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.example.peng.express.Activity.MainActivity;
+import com.example.peng.express.Util.GTApplication;
 import com.igexin.sdk.GTIntentService;
 import com.igexin.sdk.PushManager;
 import com.igexin.sdk.message.GTCmdMessage;
@@ -20,6 +21,8 @@ import com.igexin.sdk.message.GTTransmitMessage;
  * onReceiveCommandResult 各种事件处理回执 <br>
  */
 public class DemoIntentService extends GTIntentService {
+
+    private static final String TAG = "GetuiSdkDemo";
     /**
      * 为了观察透传消息
      */
@@ -27,13 +30,16 @@ public class DemoIntentService extends GTIntentService {
 
     public DemoIntentService(){
     }
+
     @Override
     public void onReceiveServicePid(Context context, int i) {
+        Log.d(TAG, "onReceiveServicePid -> " + i);
     }
 
     @Override
     public void onReceiveClientId(Context context, String s) {
         Log.e(TAG, "onReceiveClientId -> " + "clientId = " + s);
+        sendMessage(s, 1);
     }
 
     @Override
@@ -44,19 +50,27 @@ public class DemoIntentService extends GTIntentService {
         byte[] payload = msg.getPayload();
         String pkg = msg.getPkgName();
         String cid = msg.getClientId();
+
+        // 第三方回执调用接口，actionid范围为90000-90999，可根据业务场景执行
         boolean result = PushManager.getInstance().sendFeedbackMessage(context, taskid, messageid, 90001);
         Log.d(TAG, "call sendFeedbackMessage = " + (result ? "success" : "failed"));
+
+        Log.d(TAG, "onReceiveMessageData -> " + "appid = " + appid + "\ntaskid = " + taskid + "\nmessageid = " + messageid + "\npkg = " + pkg
+                + "\ncid = " + cid);
+
         if (payload == null) {
+            Log.e(TAG, "receiver payload = null");
         } else {
             String data = new String(payload);
+            Log.d(TAG, "receiver payload = " + data);
             sendMessage(data, 0);
-            System.out.println("data-------->"+data);
         }
+        Log.d(TAG, "----------------------------------------------------------------------------------------------");
     }
 
     @Override
-    public void onReceiveOnlineState(Context context, boolean b) {
-
+    public void onReceiveOnlineState(Context context, boolean online) {
+        Log.d(TAG, "onReceiveOnlineState -> " + (online ? "online" : "offline"));
     }
 
     @Override
@@ -66,7 +80,8 @@ public class DemoIntentService extends GTIntentService {
 
     @Override
     public void onNotificationMessageArrived(Context context, GTNotificationMessage gtNotificationMessage) {
-
+        String msg= gtNotificationMessage.getContent().toString();
+        sendMessage(msg,2);
     }
 
     @Override
@@ -78,7 +93,7 @@ public class DemoIntentService extends GTIntentService {
         Message msg = Message.obtain();
         msg.what = what;
         msg.obj = data;
-//        Pus.sendMessage(msg);
+        System.out.println(data);
+        GTApplication.sendMessage(msg);
     }
-
 }

@@ -208,8 +208,8 @@
 
                 <ImageView
                     android:id="@+id/img_minus"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_weight="1"
                     android:src="@mipmap/minus"/>
 
@@ -309,9 +309,9 @@
 
                 <ImageView
                     android:id="@+id/img_package_minus"
-                    android:layout_width="30dp"
+                    android:layout_width="20dp"
                     android:layout_weight="1"
-                    android:layout_height="30dp"
+                    android:layout_height="20dp"
                     android:src="@mipmap/minus"/>
 
                 <EditText
@@ -351,6 +351,7 @@
                 android:id="@+id/cb_agree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:background="@drawable/checkbox_shape"/>
 
             <TextView

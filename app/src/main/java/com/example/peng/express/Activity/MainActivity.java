@@ -64,9 +64,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FragmentManager fragmentManager = getSupportFragmentManager();
         viewPager.setAdapter(new viewPagerAdapter(fragmentManager,fragmentList));
     }
-    private void resetImg(){
-
-    }
 
     @Override
     public void onClick(View v) {

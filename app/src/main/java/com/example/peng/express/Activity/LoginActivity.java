@@ -1,8 +1,5 @@
 package com.example.peng.express.Activity;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,13 +14,13 @@ import android.widget.Toast;
 
 import com.example.peng.express.Interface.HttpCallbackListener;
 import com.example.peng.express.R;
+import com.example.peng.express.Service.DemoIntentService;
+import com.example.peng.express.Service.DemoPushService;
 import com.example.peng.express.Util.HttpUtil;
-import com.zhy.http.okhttp.OkHttpUtils;
+import com.igexin.sdk.PushManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import okhttp3.RequestBody;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView tv_forget_password,tv_register;
@@ -37,6 +34,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        PushManager.getInstance().initialize(getApplicationContext(), DemoPushService.class);
+        PushManager.getInstance().initialize(getApplicationContext(), DemoIntentService.class);
+
         initView();
         initEvent();
     }

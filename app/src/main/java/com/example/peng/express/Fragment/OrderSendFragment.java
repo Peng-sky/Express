@@ -1,11 +1,18 @@
 package com.example.peng.express.Fragment;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +25,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.peng.express.Activity.DirectionActivity;
+import com.example.peng.express.Activity.SenderAddressActivity;
 import com.example.peng.express.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 public class OrderSendFragment extends Fragment implements View.OnClickListener {
         private TextView tv_send_address,tv_addresses,tv_sender_name,tv_phone_num,tv_address,
@@ -30,13 +46,32 @@ public class OrderSendFragment extends Fragment implements View.OnClickListener 
     private CheckBox cb_agree;
     private Button btn_send_confirm;
     private LinearLayout linear_address,linear_direction;
+
+    private String appkey = "";
+    private String appsecret = "";
+    private String appid = "";
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_order_send,null);
         initView(view);
+        parseManifests();
         return view;
+    }
+
+    private void parseManifests() {
+        String packageName = getActivity().getApplicationContext().getPackageName();
+        try {
+            ApplicationInfo appInfo = getActivity().getApplicationContext().getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA);
+            if (appInfo.metaData != null) {
+                appid = appInfo.metaData.getString("PUSH_APPID");
+                appsecret = appInfo.metaData.getString("PUSH_APPSECRET");
+                appkey = appInfo.metaData.getString("PUSH_APPKEY");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void initView(View view) {
@@ -87,9 +122,69 @@ public class OrderSendFragment extends Fragment implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.img_sender_info:
+                Intent intent = new Intent(getActivity(),SenderAddressActivity.class);
+                startActivityForResult(intent,0x001);
+                break;
+            case R.id.img_addressee_info:
+                Intent intent1 = new Intent(getActivity(),DirectionActivity.class);
+                startActivityForResult(intent1,0x002);
+                break;
+            case R.id.img_minus:
+                int count = Integer.parseInt(et_estimate_weight.getText().toString());
+                if (count==1){
+                    return;
+                }else {
+                    count-=1;
+                    et_estimate_weight.setText(count+"");
+                }
+                break;
+            case R.id.img_add:
+                int count1 = Integer.parseInt(et_estimate_weight.getText().toString());
+                count1+=1;
+                et_estimate_weight.setText(count1+"");
+                break;
+            case R.id.img_package_minus:
+                int count2 = Integer.parseInt(et_package_amount.getText().toString());
+                if (count2==1){
+                    return;
+                }else {
+                    count2-=1;
+                    et_package_amount.setText(count2+"");
+                }
+                break;
+            case R.id.img_package_add:
+                int count3 = Integer.parseInt(et_package_amount.getText().toString());
+                    count3+=1;
+                    et_package_amount.setText(count3+"");
+                break;
+            case R.id.btn_send_confirm:
 
+                break;
+        }
     }
 
+    private boolean isNetworkConnected() {
+        ConnectivityManager connectivity = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivity != null) {
+            NetworkInfo[] info = connectivity.getAllNetworkInfo();
+            if (info != null) {
+                for (NetworkInfo ni : info) {
+                    if (ni.getState() == NetworkInfo.State.CONNECTED) {
+                        Log.d("getui", "type = " + (ni.getType() == 0 ? "mobile" : ((ni.getType() == 1) ? "wifi" : "none")));
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * 展示Dialog
+     */
     private void openDialog(){
         final Button tv_file,tv_DP,tv_life,tv_cloth,tv_food,tv_other,btn_dialog_confirm;
 
@@ -205,5 +300,32 @@ public class OrderSendFragment extends Fragment implements View.OnClickListener 
                 dialog.dismiss();
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data!=null){
+            String name = data.getStringExtra("name");
+            String phone = data.getStringExtra("phone");
+            String address = data.getStringExtra("sender_address");
+            switch (requestCode){
+                case 0x001:
+                        tv_send_address.setVisibility(View.GONE);
+                        linear_address.setVisibility(View.VISIBLE);
+                        tv_sender_name.setText(name);
+                        tv_phone_num.setText(phone);
+                        tv_address.setText(address);
+                    break;
+                case 0x002:
+                    tv_addresses.setVisibility(View.GONE);
+                    linear_direction.setVisibility(View.VISIBLE);
+                    tv_direction.setText(name);
+                    tv_direction_phone.setText(phone);
+                    tv_direction_add.setText(address);
+                    break;
+            }
+        }
+        Log.i("NullPointerException","intent 为空");
     }
 }

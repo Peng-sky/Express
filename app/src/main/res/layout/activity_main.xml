@@ -31,6 +31,7 @@
                 android:id="@+id/img_home"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:padding="5dp"
                 android:src="@mipmap/home_page" />
 
             <TextView
@@ -51,6 +52,7 @@
                 android:id="@+id/img_send"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:padding="5dp"
                 android:src="@mipmap/send_package" />
 
             <TextView
@@ -71,6 +73,7 @@
                 android:id="@+id/img_package"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:padding="5dp"
                 android:src="@mipmap/express" />
 
             <TextView
@@ -91,6 +94,7 @@
                 android:id="@+id/img_myself"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:padding="5dp"
                 android:src="@mipmap/main"/>
 
             <TextView

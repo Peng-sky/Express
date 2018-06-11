@@ -11,9 +11,9 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         manifestPlaceholders = [
-                GETUI_APP_ID : "bQWbiA7iRf9CUYIQ9UWiv1",
-                GETUI_APP_KEY : "dN3wffGndQACD8c7407ia6",
-                GETUI_APP_SECRET : "PchVht9y6d9kJtTYJvgp14"
+                GETUI_APP_ID : "ryOo3p8mOb8MJnyxMPosh4",
+                GETUI_APP_KEY : "M9xPP9akuV6GfFKpPpkVs5",
+                GETUI_APP_SECRET : "iBUnFq2zd66ZaqhB2OADN"
         ]
 
         ndk{
@@ -41,5 +41,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.4'
     implementation 'com.zhy:okhttputils:2.6.2'
     implementation 'liji.library.dev:citypickerview:0.7.0'
-    implementation 'com.getui:sdk:2.12.3.0'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/GetuiSDK2.12.3.0.jar')
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation files('libs/json_simple-1.1.jar')
+    implementation 'com.google.zxing:zxing-parent:3.3.3'
 }

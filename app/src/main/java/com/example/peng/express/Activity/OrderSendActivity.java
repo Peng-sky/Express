@@ -211,21 +211,6 @@
 //        });
 //    }
 //
-////    private void SendHttp(){
-////        RequestBody body = RequestBody.create(JSON, "");
-//////        String url, Object tag, Map<String, String> params, Map<String, String> headers,int id
-////        OkHttpRequest request = new OkHttpRequest(IP,null,null,null,1) {
-////            @Override
-////            protected RequestBody buildRequestBody() {
-////                return null;
-////            }
-////
-////            @Override
-////            protected Request buildRequest(RequestBody requestBody) {
-////                return null;
-////            }
-////        };
-////    }
 //
 //
 //    @Override
@@ -271,10 +256,6 @@
 //                showTransmission();
 //                break;
 //        }
-//    }
-//
-//    private void showTransmission() {
-//
 //    }
 //
 //    @Override
