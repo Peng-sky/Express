@@ -3,4 +3,6 @@
     <dimen name="textSize">16sp</dimen>
     <dimen name="mark">30dp</dimen>
     <dimen name="main_height">70dp</dimen>
+    <dimen name="dots_height">30dp</dimen>
+    <dimen name="dots_margin_bottom">20dp</dimen>
 </resources>

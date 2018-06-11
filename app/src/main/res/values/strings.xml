@@ -4,4 +4,11 @@
     <string name="password_hint">输入密码</string>
     <string name="text_commit">预约时间:  8:00-17:00，逾时次日服务</string>
     <string name="PUA">  请选择省-市-区</string>
+
+    <string name="package_name_text">包名:com.example.peng.express</string>
+
+    <string name="title_activity_welcome">Home Screen</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
 </resources>
