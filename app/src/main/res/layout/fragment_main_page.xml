@@ -101,6 +101,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:gravity="center"
+        android:background="@color/white_bg"
         android:padding="20dp"
         android:orientation="horizontal">
 
@@ -146,6 +147,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="35dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/shape_btn_login"
@@ -180,7 +183,9 @@
         android:id="@+id/main_page_list_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp">
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        >
     </ListView>
 
 

@@ -1,7 +1,5 @@
 package com.example.peng.express.Bean;
 
-
-
 public class User{
     private int id;
     private String username;

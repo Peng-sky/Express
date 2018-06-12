@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -29,13 +30,39 @@ import android.widget.Toast;
 
 import com.example.peng.express.Activity.DirectionActivity;
 import com.example.peng.express.Activity.SenderAddressActivity;
+import com.example.peng.express.Bean.Order;
+import com.example.peng.express.Interface.HttpCallbackListener;
 import com.example.peng.express.R;
+import com.google.gson.Gson;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.builder.OkHttpRequestBuilder;
+import com.zhy.http.okhttp.request.OkHttpRequest;
+import com.zhy.http.okhttp.request.RequestCall;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
+import java.util.zip.GZIPOutputStream;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+
+import static com.example.peng.express.Activity.LoginActivity.IP;
 
 public class OrderSendFragment extends Fragment implements View.OnClickListener {
         private TextView tv_send_address,tv_addresses,tv_sender_name,tv_phone_num,tv_address,
@@ -50,6 +77,7 @@ public class OrderSendFragment extends Fragment implements View.OnClickListener 
     private String appkey = "";
     private String appsecret = "";
     private String appid = "";
+    private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,6 +86,68 @@ public class OrderSendFragment extends Fragment implements View.OnClickListener 
         initView(view);
         parseManifests();
         return view;
+    }
+
+    private void sendOrderToService(final String json) {
+
+        RequestBody body = RequestBody.create(JSON,json);
+        OkHttpClient okHttpClient  = new OkHttpClient.Builder()
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(10,TimeUnit.SECONDS)
+                .readTimeout(20, TimeUnit.SECONDS)
+                .build();
+
+        final Request request = new Request.Builder()
+                .url(IP+"Order")
+                .post(body)
+                .build();
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                System.out.println("连接服务器失败");
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Order order = new Order();
+                try {
+                    String json = response.body().string();
+                    System.out.println(json);
+                    JSONObject jsonObject = new JSONObject(json);
+                    String result = jsonObject.optString("msg");
+                    if (result.equals("1")){
+                        //Toast 必须在主线程中进行
+                        //Toast 显示需要出现在一个线程的消息队列中.... 很隐蔽
+                        //因为toast的实现需要在activity的主线程才能正常工作，
+                        // 所以传统的非主线程不能使toast显示在actvity上，通过Handler可以使自定义线程运行于Ui主线程
+                        Looper.prepare();
+                        Toast.makeText(getActivity(),"订单创建成功",Toast.LENGTH_LONG).show();
+                        Looper.loop();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private String getOrder(){
+        String name = tv_sender_name.getText().toString();
+        String sender_phone = tv_phone_num.getText().toString();
+        String sender_address = tv_address.getText().toString();
+        String direction = tv_direction.getText().toString();
+        String direction_phone = tv_direction_phone.getText().toString();
+        String direction_add = tv_direction_add.getText().toString();
+        String type = et_option.getText().toString();
+        String weight = et_estimate_weight.getText().toString();
+        String price = et_amount.getText().toString();
+        String package_amount = et_package_amount.getText().toString();
+        Gson gson = new Gson();
+        Order order = new Order(getRandom(),name,sender_phone,sender_address,direction,direction_phone,direction_add,type,weight,price,package_amount);
+        String order_info = gson.toJson(order);
+        System.out.println(order_info);
+        return order_info;
     }
 
     private void parseManifests() {
@@ -73,6 +163,7 @@ public class OrderSendFragment extends Fragment implements View.OnClickListener 
             e.printStackTrace();
         }
     }
+
 
     private void initView(View view) {
                 tv_send_address =view.findViewById(R.id.tv_send_address);
@@ -160,27 +251,43 @@ public class OrderSendFragment extends Fragment implements View.OnClickListener 
                     et_package_amount.setText(count3+"");
                 break;
             case R.id.btn_send_confirm:
-
+                sendOrderToService(getOrder());
                 break;
         }
     }
 
-    private boolean isNetworkConnected() {
-        ConnectivityManager connectivity = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivity != null) {
-            NetworkInfo[] info = connectivity.getAllNetworkInfo();
-            if (info != null) {
-                for (NetworkInfo ni : info) {
-                    if (ni.getState() == NetworkInfo.State.CONNECTED) {
-                        Log.d("getui", "type = " + (ni.getType() == 0 ? "mobile" : ((ni.getType() == 1) ? "wifi" : "none")));
-                        return true;
-                    }
-                }
-            }
+    /**
+     * 获取一个9位数的随机单号
+     * @return
+     */
+    private String getRandom(){
+        StringBuilder str=new StringBuilder();//定义变长字符串
+        Random random=new Random();
+        //随机生成数字，并添加到字符串
+        for(int i=0;i<9;i++){
+            str.append(random.nextInt(10));
         }
-
-        return false;
+        String number = String.valueOf(str);
+        //将字符串转换为数字并输出
+        Log.i("输出的快递单号为",number);
+        return number;
     }
+
+//    private boolean isNetworkConnected() {
+//        ConnectivityManager connectivity = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+//        if (connectivity != null) {
+//            NetworkInfo[] info = connectivity.getAllNetworkInfo();
+//            if (info != null) {
+//                for (NetworkInfo ni : info) {
+//                    if (ni.getState() == NetworkInfo.State.CONNECTED) {
+//                        Log.d("getui", "type = " + (ni.getType() == 0 ? "mobile" : ((ni.getType() == 1) ? "wifi" : "none")));
+//                        return true;
+//                    }
+//                }
+//            }
+//        }
+//        return false;
+//    }
 
     /**
      * 展示Dialog

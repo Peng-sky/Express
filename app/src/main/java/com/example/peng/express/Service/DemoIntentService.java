@@ -22,7 +22,7 @@ import com.igexin.sdk.message.GTTransmitMessage;
  */
 public class DemoIntentService extends GTIntentService {
 
-    private static final String TAG = "GetuiSdkDemo";
+    private static final String TAG = "DemoIntentService";
     /**
      * 为了观察透传消息
      */
