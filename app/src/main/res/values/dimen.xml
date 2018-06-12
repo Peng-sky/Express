@@ -7,4 +7,7 @@
     <dimen name="mark">30dp</dimen>
     <dimen name="dots_height">30dp</dimen>
     <dimen name="dots_margin_bottom">20dp</dimen>
+    <dimen name="mainSelfTextSize">16dp</dimen>
+    <dimen name="sendRequire">16sp</dimen>
+    <dimen name="sendRPadding">20</dimen>
 </resources>

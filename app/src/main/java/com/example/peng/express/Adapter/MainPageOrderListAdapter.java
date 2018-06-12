@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.peng.express.R;
@@ -17,13 +18,14 @@ public class MainPageOrderListAdapter extends BaseAdapter {
     private String[] times;
     private Activity activity;
 
-    public MainPageOrderListAdapter(Activity activity,int[] qianshouimg,String[] track_number,String[] state,String[] time ){
-        this.activity=activity;
+    public MainPageOrderListAdapter(Activity activity, int[] qianshouimg, String[] track_number, String[] state, String[] time) {
+        this.activity = activity;
         this.qianshouimgs = qianshouimg;
         this.track_number = track_number;
         this.states = state;
         this.times = time;
     }
+
     @Override
     public int getCount() {
         return track_number.length;
@@ -41,19 +43,19 @@ public class MainPageOrderListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        TextView qianshouimg,tracknumber,state,time;
+        TextView tracknumber, state, time;
+        ImageView qianshouimg;
 
-            convertView = LayoutInflater.from(activity).inflate(R.layout.item_order_list_main,null);
-            qianshouimg = convertView.findViewById(R.id.qianshouimg);
-            tracknumber = convertView.findViewById(R.id.track_number);
-            state = convertView.findViewById(R.id.state);
-            time = convertView.findViewById(R.id.time);
+        convertView = LayoutInflater.from(activity).inflate(R.layout.item_order_list_main, null);
+        qianshouimg = convertView.findViewById(R.id.qianshouimg);
+        tracknumber = convertView.findViewById(R.id.track_number);
+        state = convertView.findViewById(R.id.state);
+        time = convertView.findViewById(R.id.time);
 
-          qianshouimg.setBackgroundResource(qianshouimgs[position]);
-          tracknumber.setText(track_number[position]+"");
-          state.setText(states[position]+"");
-          time.setText(times[position]+"");
-
+        qianshouimg.setBackgroundResource(qianshouimgs[position]);
+        tracknumber.setText(track_number[position] + "");
+        state.setText(states[position] + "");
+        time.setText(times[position] + "");
 
         return convertView;
     }

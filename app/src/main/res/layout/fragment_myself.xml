@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="修改资料"
-                    android:textSize="25sp" />
+                    android:textSize="@dimen/mainSelfTextSize" />
             </LinearLayout>
 
             <LinearLayout
@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="签到"
-                    android:textSize="25sp" />
+                    android:textSize="@dimen/mainSelfTextSize" />
             </LinearLayout>
 
             <LinearLayout
@@ -100,7 +100,7 @@
                     android:id="@+id/integral"
                     android:layout_gravity="center"
                     android:text="我的积分"
-                    android:textSize="25sp" />
+                    android:textSize="@dimen/mainSelfTextSize"  />
             </LinearLayout>
 
             <LinearLayout
@@ -121,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="设置"
-                    android:textSize="25sp" />
+                    android:textSize="@dimen/mainSelfTextSize" />
             </LinearLayout>
 
             <LinearLayout
@@ -142,7 +142,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="校园派送员"
-                    android:textSize="25sp" />
+                    android:textSize="@dimen/mainSelfTextSize"  />
             </LinearLayout>
 
             <LinearLayout
@@ -163,7 +163,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="关于"
-                    android:textSize="25sp" />
+                    android:textSize="@dimen/mainSelfTextSize"  />
             </LinearLayout>
         </LinearLayout>
 
