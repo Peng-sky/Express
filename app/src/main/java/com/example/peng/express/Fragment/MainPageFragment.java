@@ -13,9 +13,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.peng.express.Activity.MainActivity;
+import com.example.peng.express.Adapter.MainPageOrderListAdapter;
 import com.example.peng.express.R;
 
 public class MainPageFragment extends Fragment implements View.OnClickListener{
@@ -23,6 +25,12 @@ public class MainPageFragment extends Fragment implements View.OnClickListener{
     private TextView tv_uncollected_package,tv_finish_send;
     private ImageView img_scan,img_search;
     private EditText et_search;
+    private ListView listView;
+    private int[] qianshouimg = new int[]{R.mipmap.qianshou,R.mipmap.weiqianshou,R.mipmap.qianshou};
+    private String[] track_number= new String[]{"1111111111111","2222222222222","3333333333333"};
+    private String[] state= new String[]{"欢迎为你服务","正在为你服务","期待下次为你服务"};
+    private String[] time= new String[]{"2016-08-11 21：26：56","2016-08-12 21：26：56","2016-08-13 21：26：56"};
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,6 +62,8 @@ public class MainPageFragment extends Fragment implements View.OnClickListener{
         et_search.setOnClickListener(this);
         et_search.setFocusable(false);
         et_search.setClickable(true);
+        listView = view.findViewById(R.id.main_page_list_view);
+        listView.setAdapter(new MainPageOrderListAdapter(getActivity(),qianshouimg,track_number,state,time));
     }
 
     @Override
