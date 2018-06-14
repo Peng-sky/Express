@@ -62,7 +62,7 @@
         <activity android:name=".Activity.AdActivity"/>
         <activity android:name=".Activity.MainActivity"/>
         <activity android:name=".Activity.CSActivity"/>
-
+        <activity android:name=".Activity.AboutActivity"/>
         <!-- 个推SDK配置开始 -->
         <!-- 配置的第三方参数属性 -->
         <meta-data
