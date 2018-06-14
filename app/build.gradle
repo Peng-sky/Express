@@ -11,13 +11,13 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         manifestPlaceholders = [
-                GETUI_APP_ID : "ryOo3p8mOb8MJnyxMPosh4",
-                GETUI_APP_KEY : "M9xPP9akuV6GfFKpPpkVs5",
-                GETUI_APP_SECRET : "iBUnFq2zd66ZaqhB2OADN"
+                GETUI_APP_ID    : "ryOo3p8mOb8MJnyxMPosh4",
+                GETUI_APP_KEY   : "M9xPP9akuV6GfFKpPpkVs5",
+                GETUI_APP_SECRET: "iBUnFq2zd66ZaqhB2OADN"
         ]
 
-        ndk{
-            abiFilters "armeabi", "armeabi-v7a", "x86_64","x86"
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86_64", "x86"
         }
     }
     buildTypes {
@@ -28,6 +28,7 @@ android {
     }
     productFlavors {
     }
+    buildToolsVersion '27.0.3'
 }
 
 dependencies {

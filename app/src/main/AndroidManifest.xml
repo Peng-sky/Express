@@ -61,6 +61,7 @@
         <activity android:name=".Activity.LoginActivity"/>
         <activity android:name=".Activity.AdActivity"/>
         <activity android:name=".Activity.MainActivity"/>
+        <activity android:name=".Activity.CSActivity"/>
 
         <!-- 个推SDK配置开始 -->
         <!-- 配置的第三方参数属性 -->
