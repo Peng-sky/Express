@@ -17,9 +17,9 @@
             android:src="@mipmap/ic_launcher" />
 
         <TextView
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/name"
             android:text="一二三"
             android:textSize="25dp"
             android:gravity="center"
@@ -138,6 +138,7 @@
                     android:src="@mipmap/sender" />
 
                 <TextView
+                    android:id="@+id/school_courier"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

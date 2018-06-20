@@ -29,8 +29,9 @@
 
         <LinearLayout
             android:id="@+id/linear_address"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="vertical"
             android:visibility="gone">
 
@@ -48,10 +49,10 @@
                 android:id="@+id/tv_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxEms="20"
-                android:maxLines="2"
+                android:maxEms="16"
+                android:maxLines="1"
                 android:ellipsize="end"
-                android:text="四川省成都市高新区益州大道北段15号"/>
+                android:text="四川省成都市"/>
         </LinearLayout>
 
         <ImageView
@@ -59,7 +60,6 @@
             android:id="@+id/img_sender_info"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_weight="1"
             android:layout_gravity="center"
             android:src="@mipmap/add_sender"/>
     </LinearLayout>
@@ -94,7 +94,7 @@
 
         <LinearLayout
             android:id="@+id/linear_direction"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
@@ -114,8 +114,8 @@
                 android:id="@+id/tv_direction_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxEms="20"
-                android:maxLines="2"
+                android:maxEms="16"
+                android:maxLines="1"
                 android:ellipsize="end"
                 android:text="四川省成都市高新区益州大道北段15号"/>
         </LinearLayout>
@@ -124,7 +124,6 @@
             android:id="@+id/img_addressee_info"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_weight="1"
             android:layout_gravity="center"
             android:src="@mipmap/add_sender"/>
     </LinearLayout>

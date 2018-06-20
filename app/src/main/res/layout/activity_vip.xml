@@ -13,7 +13,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/sendRequire"
-            android:text="快递单号："/>
+            android:text="姓名："/>
 
         <EditText
             android:id="@+id/track_number"
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/sendRequire"
-            android:text="快递公司："/>
+            android:text="手机："/>
 
         <EditText
             android:id="@+id/express_company"
@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/sendRequire"
-            android:text="收件人电话号码："/>
+            android:text="快递公司："/>
 
         <EditText
             android:id="@+id/phone"
@@ -70,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/sendRequire"
-            android:text="地址："/>
+            android:text="快递单号："/>
 
         <EditText
             android:id="@+id/address"
@@ -89,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/sendRequire"
-            android:text="短信："/>
+            android:text="地址："/>
 
         <EditText
             android:id="@+id/sms"
@@ -107,7 +107,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/sendRequire"
-            android:text="短信："/>
+            android:text="状态："/>
 
         <EditText
             android:id="@+id/remark"

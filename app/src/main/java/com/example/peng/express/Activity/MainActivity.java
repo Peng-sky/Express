@@ -1,5 +1,6 @@
 package com.example.peng.express.Activity;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -12,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.peng.express.Adapter.viewPagerAdapter;
+import com.example.peng.express.Bean.User;
 import com.example.peng.express.Fragment.MainPageFragment;
 import com.example.peng.express.Fragment.MainSelfFragment;
 import com.example.peng.express.Fragment.OrderSendFragment;
@@ -57,7 +59,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         img_myself = findViewById(R.id.img_myself);
 
         MainPageFragment mainPageFragment = new MainPageFragment();
-        MainSelfFragment selfFragment= new MainSelfFragment();
+        MainSelfFragment selfFragment=new MainSelfFragment();
+        Intent intent = getIntent();
+        User user = (User) intent.getSerializableExtra("user");
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("user",user);
+        selfFragment.setArguments(bundle);
         PackageFragment packageFragment = new PackageFragment();
         OrderSendFragment orderSendFragment = new OrderSendFragment();
         fragmentList = new ArrayList<>();
@@ -72,25 +79,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        resetImg();
         resetTextColor();
         switch (v.getId()){
             case R.id.linear_homepage:
                 viewPager.setCurrentItem(0);
                 tv_home.setTextColor(getResources().getColor(R.color.text_color));
+                img_home.setImageResource(R.mipmap.home);
                 break;
             case R.id.linear_post_express:
                 viewPager.setCurrentItem(1);
                 tv_send.setTextColor(getResources().getColor(R.color.text_color));
+                img_send.setImageResource(R.mipmap.send_se);
                 break;
             case R.id.linear_package:
                 viewPager.setCurrentItem(2);
                 tv_package.setTextColor(getResources().getColor(R.color.text_color));
+                img_package.setImageResource(R.mipmap.express_se);
                 break;
             case R.id.linear_myself:
                 viewPager.setCurrentItem(3);
                 tv_main.setTextColor(getResources().getColor(R.color.text_color));
+                img_myself.setImageResource(R.mipmap.main_se);
                 break;
         }
+    }
+
+    private void resetImg() {
+        img_home.setImageResource(R.mipmap.home_un);
+        img_send.setImageResource(R.mipmap.send_package);
+        img_package.setImageResource(R.mipmap.express);
+        img_myself.setImageResource(R.mipmap.main);
     }
 
     private void resetTextColor() {
@@ -99,4 +118,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_package.setTextColor(getResources().getColor(R.color.gray));
         tv_send.setTextColor(getResources().getColor(R.color.gray));
     }
+    
 }

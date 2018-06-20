@@ -32,8 +32,8 @@
                 android:id="@+id/img_home"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:padding="10dp"
-                android:src="@mipmap/home_page" />
+                android:padding="5dp"
+                android:src="@mipmap/home" />
 
             <TextView
                 android:id="@+id/tv_home"

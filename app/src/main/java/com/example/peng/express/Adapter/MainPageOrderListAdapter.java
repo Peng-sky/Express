@@ -43,7 +43,7 @@ public class MainPageOrderListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        TextView tracknumber, state, time;
+        TextView tracknumber,state,time;
         ImageView qianshouimg;
 
         convertView = LayoutInflater.from(activity).inflate(R.layout.item_order_list_main, null);
@@ -52,7 +52,7 @@ public class MainPageOrderListAdapter extends BaseAdapter {
         state = convertView.findViewById(R.id.state);
         time = convertView.findViewById(R.id.time);
 
-        qianshouimg.setBackgroundResource(qianshouimgs[position]);
+        qianshouimg.setImageResource(qianshouimgs[position]);
         tracknumber.setText(track_number[position] + "");
         state.setText(states[position] + "");
         time.setText(times[position] + "");

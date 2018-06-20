@@ -40,7 +40,7 @@ public class AdActivity extends AppCompatActivity implements View.OnClickListene
             @Override
             public void run() {
                 //从闪屏界面跳转到首界面
-                Intent intent = new Intent(AdActivity.this, MainActivity.class);
+                Intent intent = new Intent(AdActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -78,7 +78,7 @@ public class AdActivity extends AppCompatActivity implements View.OnClickListene
         switch (view.getId()) {
             case R.id.tv:
                 //从闪屏界面跳转到首界面
-                Intent intent = new Intent(AdActivity.this, MainActivity.class);
+                Intent intent = new Intent(AdActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
                 if (runnable != null) {

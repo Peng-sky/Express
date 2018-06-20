@@ -89,14 +89,12 @@ public class OrderSendFragment extends Fragment implements View.OnClickListener 
     }
 
     private void sendOrderToService(final String json) {
-
         RequestBody body = RequestBody.create(JSON,json);
         OkHttpClient okHttpClient  = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10,TimeUnit.SECONDS)
                 .readTimeout(20, TimeUnit.SECONDS)
                 .build();
-
         final Request request = new Request.Builder()
                 .url(IP+"Order")
                 .post(body)
@@ -112,9 +110,7 @@ public class OrderSendFragment extends Fragment implements View.OnClickListener 
             public void onResponse(Call call, Response response) throws IOException {
                 Order order = new Order();
                 try {
-                    String json = response.body().string();
-                    System.out.println(json);
-                    JSONObject jsonObject = new JSONObject(json);
+                    JSONObject jsonObject = new JSONObject(response.body().string());
                     String result = jsonObject.optString("msg");
                     if (result.equals("1")){
                         //Toast 必须在主线程中进行

@@ -90,8 +90,9 @@ public class WriteUserInfoActivity extends AppCompatActivity {
         String province = et_info_province.getText().toString();
         String address = et_info_address.getText().toString();
         String sex = radioButton.getText().toString();
+        String user_type = "0";
         Gson gson = new Gson();
-        User user = new User(phone, username, password, sex, birthday, email, province, address);
+        User user = new User(phone, username, password, sex, birthday, email, province, address,user_type);
         String info = gson.toJson(user);
         System.out.println(info);
         return info;

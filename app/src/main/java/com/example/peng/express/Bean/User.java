@@ -1,6 +1,8 @@
 package com.example.peng.express.Bean;
 
-public class User{
+import java.io.Serializable;
+
+public class User implements Serializable {
     private int id;
     private String username;
     private String phone_number;
@@ -10,8 +12,9 @@ public class User{
     private String email;
     private String addressPUA;
     private String address_details;
+    private String user_type;
 
-    public User(String phone, String username, String password, String sex, String birthday, String email, String province, String address) {
+    public User(String phone, String username, String password, String sex, String birthday, String email, String province, String address,String user_type) {
         this.phone_number = phone;
         this.username = username;
         this.password = password;
@@ -20,6 +23,7 @@ public class User{
         this.email = email;
         this.addressPUA = province;
         this.address_details = address;
+        this.user_type = user_type;
     }
 
     public int getId() {
@@ -93,4 +97,13 @@ public class User{
     public void setAddress_details(String address_details) {
         this.address_details = address_details;
     }
+
+    public String getUser_type() {
+        return user_type;
+    }
+
+    public void setUser_type(String user_type) {
+        this.user_type = user_type;
+    }
+
 }

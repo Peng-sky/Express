@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.peng.express.Activity.CSActivity;
 import com.example.peng.express.Activity.MainActivity;
+import com.example.peng.express.Activity.VipActivity;
 import com.example.peng.express.Adapter.MainPageOrderListAdapter;
 import com.example.peng.express.R;
 
@@ -74,9 +75,11 @@ public class MainPageFragment extends Fragment implements View.OnClickListener{
 
                 break;
             case R.id.linear_freight:break;
-            case R.id.linear_vip:break;
             case R.id.linear_contact_CS:
                 startActivity(new Intent(getActivity(), CSActivity.class));
+                break;
+            case R.id.linear_vip:
+                startActivity(new Intent(getActivity(), VipActivity.class));
                 break;
             case R.id.tv_uncollected_package:break;
             case R.id.tv_finish_send:break;
