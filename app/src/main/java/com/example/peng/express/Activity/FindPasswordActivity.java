@@ -7,11 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.peng.express.R;
 
 public class FindPasswordActivity extends AppCompatActivity {
-    private Button btn_confirm,btn_get_code;
+    private Button btn_confirm;
+    private TextView btn_get_code;
     private EditText et_phone_num,et_identifying_code;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

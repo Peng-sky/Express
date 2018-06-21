@@ -52,10 +52,10 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:text="昵称"/>
+            android:text="昵称:"/>
         <EditText
             android:id="@+id/et_name"
             android:layout_width="0dp"
@@ -75,10 +75,10 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:layout_weight="1"
             android:layout_margin="10dp"
-            android:text="用户名"/>
+            android:text="用户名:"/>
         <EditText
             android:id="@+id/et_usernames"
             android:layout_width="0dp"
@@ -99,9 +99,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:layout_margin="10dp"
-            android:text="性别"/>
+            android:text="性别:"/>
         <RadioGroup
             android:id="@+id/rg"
             android:layout_width="0dp"
@@ -113,14 +113,36 @@
                 android:id="@+id/male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="男" />
+                android:button="@null"
+                android:background="@drawable/radio_button_style"
+                android:checked="false"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="男"
+                android:textSize="20sp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"/>
             <RadioButton
                 android:id="@+id/femle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:button="@null"
+                android:background="@drawable/radio_button_style"
                 android:checked="true"
-                android:text="女"/>
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="女"
+                android:textSize="20sp"
+                />
         </RadioGroup>
     </LinearLayout>
     <TextView
@@ -134,10 +156,10 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:layout_weight="1"
             android:layout_margin="10dp"
-            android:text="生日"/>
+            android:text="生日:"/>
         <EditText
             android:id="@+id/et_birthday"
             android:layout_width="0dp"
@@ -157,10 +179,10 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:layout_weight="1"
             android:layout_margin="10dp"
-            android:text="邮箱"/>
+            android:text="邮箱:"/>
         <EditText
             android:id="@+id/et_email"
             android:layout_width="0dp"
@@ -180,10 +202,10 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:layout_weight="1"
             android:layout_margin="10dp"
-            android:text="省市区"/>
+            android:text="省市区:"/>
         <EditText
             android:id="@+id/et_province"
             android:layout_width="0dp"
@@ -208,10 +230,10 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:layout_weight="1"
             android:layout_margin="10dp"
-            android:text="详细地址"/>
+            android:text="详细地址:"/>
         <EditText
             android:id="@+id/et_address"
             android:layout_width="0dp"

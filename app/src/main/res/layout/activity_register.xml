@@ -64,9 +64,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:layout_marginTop="18dp"
-            android:layout_marginRight="40dp"
             android:background="@drawable/input_shape"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp"
             android:text="获取验证码"/>
 
     </LinearLayout>
@@ -130,9 +130,8 @@
             android:layout_marginRight="50dp"
             android:layout_marginTop="5dp"
             android:background="@color/button"
-            android:gravity="center"
+            android:textColor="@color/colorGrey"
             android:text="确 认"
-
             android:textSize="24dp" />
     </LinearLayout>
 
