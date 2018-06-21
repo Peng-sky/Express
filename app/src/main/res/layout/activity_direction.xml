@@ -8,16 +8,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp">
-
-        <ImageView
-            android:id="@+id/img_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/back"
-            android:layout_centerVertical="true"
-            android:paddingLeft="20dp"/>
+        android:layout_height="50dp"
+        android:background="@color/title">
 
         <TextView
             android:layout_width="wrap_content"
@@ -25,9 +17,17 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="收件人地址"
-            android:textSize="24sp"/>
+            android:textColor="@color/colorGrey"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:src="@mipmap/back_white" />
     </RelativeLayout>
-//text1
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -130,7 +130,9 @@
             android:id="@+id/cb_dir_default_direction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="139dp"
             android:background="@drawable/checkbox_shape" />
 
         <TextView
@@ -143,18 +145,18 @@
             android:layout_alignParentRight="true" />
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
+        android:gravity="center"
         android:layout_height="match_parent">
 
         <Button
             android:id="@+id/btn_commit"
-            android:layout_width="match_parent"
+            android:layout_width="150dp"
             android:layout_height="50dp"
+            android:background="@color/button"
             android:textSize="24sp"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="20dp"
             android:text="保存" />
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

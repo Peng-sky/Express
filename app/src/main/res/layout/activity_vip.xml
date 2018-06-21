@@ -119,17 +119,19 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/sendRPadding">
+        android:gravity="center"
+        android:layout_height="wrap_content">
 
         <Button
             android:id="@+id/commit"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="@dimen/sendRequire"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
             android:gravity="center"
-            android:text="提交"/>
+            android:background="@color/button"
+            android:textColor="@color/colorGrey"
+            android:text="提 交"/>
     </LinearLayout>
 
 

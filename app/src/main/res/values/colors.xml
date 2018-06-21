@@ -12,6 +12,8 @@
     <color name="text_color">#337fe6</color>
     <color name="sc_state">#fa7a2a</color>
     <color name="top_bg">#39acfc</color>
+    <color name="button">#166eab</color>
+    <color name="title">#38aafb</color>
 
 
     <!-- Screens background color-->

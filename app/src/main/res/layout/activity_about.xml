@@ -11,7 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/liji_c_blue">
+        android:background="@color/title">
 
         <TextView
             android:layout_width="wrap_content"
@@ -19,16 +19,15 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="关于"
+            android:textColor="@color/colorGrey"
             android:textSize="24sp" />
 
         <ImageView
             android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="49dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="0dp"
-            android:paddingLeft="-110dp"
             android:src="@mipmap/back_white" />
     </RelativeLayout>
 

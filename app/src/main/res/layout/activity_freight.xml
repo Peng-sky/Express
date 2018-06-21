@@ -6,16 +6,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp">
-
-        <ImageView
-            android:id="@+id/img_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:paddingLeft="20dp"
-            android:src="@mipmap/back" />
+        android:layout_height="50dp"
+        android:background="@color/title">
 
         <TextView
             android:layout_width="wrap_content"
@@ -23,8 +15,16 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="运费查询"
-            android:textSize="24sp"/>
+            android:textColor="@color/colorGrey"
+            android:textSize="24sp" />
 
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:src="@mipmap/back_white" />
     </RelativeLayout>
 
     <LinearLayout
@@ -87,11 +87,18 @@
             android:text="kg"/>
     </LinearLayout>
 
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+
+    <Button
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:textSize="24sp"
+        android:background="@color/button"
         android:layout_margin="20dp"
-        android:text="查询" />
-
+        android:text="查询"
+        android:textColor="@color/colorGrey"/>
+    </LinearLayout>
 </LinearLayout>
