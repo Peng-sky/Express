@@ -10,4 +10,6 @@
     <dimen name="mainSelfTextSize">16dp</dimen>
     <dimen name="sendRequire">16sp</dimen>
     <dimen name="sendRPadding">10dp</dimen>
+    <dimen name="scOrder">2dp</dimen>
+    <dimen name="sc_order_details">5dp</dimen>
 </resources>

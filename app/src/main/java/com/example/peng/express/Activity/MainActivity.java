@@ -16,6 +16,7 @@ import com.example.peng.express.Adapter.viewPagerAdapter;
 import com.example.peng.express.Bean.User;
 import com.example.peng.express.Fragment.MainPageFragment;
 import com.example.peng.express.Fragment.MainSelfFragment;
+import com.example.peng.express.Fragment.MyOrderFragment;
 import com.example.peng.express.Fragment.OrderSendFragment;
 import com.example.peng.express.Fragment.PackageFragment;
 import com.example.peng.express.R;
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         User user = (User) intent.getSerializableExtra("user");
         Bundle bundle = new Bundle();
         bundle.putSerializable("user",user);
+        bundle.putSerializable("phone",user.getPhone_number());
         selfFragment.setArguments(bundle);
         PackageFragment packageFragment = new PackageFragment();
         OrderSendFragment orderSendFragment = new OrderSendFragment();

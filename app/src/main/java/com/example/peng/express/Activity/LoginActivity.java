@@ -1,7 +1,9 @@
 package com.example.peng.express.Activity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.peng.express.Bean.User;
+import com.example.peng.express.Fragment.MyOrderFragment;
 import com.example.peng.express.Interface.HttpCallbackListener;
 import com.example.peng.express.R;
 import com.example.peng.express.Service.DemoIntentService;
@@ -44,7 +47,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button btn_login;
     private String  phone= "";
     private String  password= "";
-    public static final String IP = "http://192.168.1.244:8080/servlet/";
+    public static final String IP = "http://192.168.43.235:8080/servlet/";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,6 +87,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
+                        Log.i("internet", "onError: "+e);
                         e.printStackTrace();
                         Toast.makeText(LoginActivity.this, "网络错误", Toast.LENGTH_SHORT).show();
 
@@ -104,10 +108,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //                            }
 //                        } catch (JSONException e) {
 //                            e.printStackTrace();
-//                        }
+//
                         Gson gson = new Gson();
                         User user = gson.fromJson(response,new TypeToken<User>(){}.getType());
-
+                        SharedPreferences sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("phone",user.getPhone_number());
+                        editor.commit();
                         if (user.getPhone_number().equals(phone)){
                             Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                             Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();

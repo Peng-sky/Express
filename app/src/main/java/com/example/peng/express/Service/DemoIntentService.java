@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Message;
 import android.util.Log;
 
-import com.example.peng.express.Activity.CheckSchoolCourierActivity;
+import com.example.peng.express.Activity.SchoolCourierActivity;
 import com.igexin.sdk.GTIntentService;
 import com.igexin.sdk.PushManager;
 import com.igexin.sdk.message.GTCmdMessage;
@@ -93,6 +93,6 @@ public class DemoIntentService extends GTIntentService {
         msg.what = what;
         msg.obj = data;
         System.out.println(data);
-        CheckSchoolCourierActivity.sendMessage(msg);
+        SchoolCourierActivity.sendMessage(msg);
     }
 }

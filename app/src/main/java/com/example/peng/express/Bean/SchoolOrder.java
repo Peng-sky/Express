@@ -10,6 +10,8 @@ public class SchoolOrder {
     public static class Body implements Serializable{
 
         private int id;
+        private String sc_username;
+        private String sc_phone_number;
         private String username;
         private String phone_number;
         private String express_company;
@@ -75,6 +77,22 @@ public class SchoolOrder {
 
         public void setState(String state) {
             this.state = state;
+        }
+
+        public String getSc_username() {
+            return sc_username;
+        }
+
+        public void setSc_username(String sc_username) {
+            this.sc_username = sc_username;
+        }
+
+        public String getSc_phone_number() {
+            return sc_phone_number;
+        }
+
+        public void setSc_phone_number(String sc_phone_number) {
+            this.sc_phone_number = sc_phone_number;
         }
     }
 

@@ -55,6 +55,7 @@ public class MainSelfFragment extends Fragment implements View.OnClickListener{
         username.setText(user.getUsername());
         if (isSC(user.getUser_type())){
             intent.setClass(getActivity(),SchoolCourierActivity.class);
+            intent.putExtra("phone",user);
         }else{
             intent.setClass(getActivity(),CheckSchoolCourierActivity.class);
         }
