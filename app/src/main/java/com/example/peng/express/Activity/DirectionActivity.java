@@ -31,7 +31,7 @@ public class DirectionActivity extends AppCompatActivity implements View.OnClick
     private void initView(){
         btn_commit = findViewById(R.id.btn_commit);
         img_get_location = findViewById(R.id.img_get_location);
-        img_back = findViewById(R.id.img_back);
+        img_back = findViewById(R.id.back);
         et_direction_name = findViewById(R.id.et_direction_name);
         et_direction_phone = findViewById(R.id.et_direction_phone);
         et_detail_address = findViewById(R.id.et_detail_address);
@@ -53,7 +53,7 @@ public class DirectionActivity extends AppCompatActivity implements View.OnClick
             case R.id.et_region:
                 new CityPick(DirectionActivity.this,et_region);//调用CityPicker选取区域
                 break;
-            case R.id.img_back:
+            case R.id.back:
                 finish();
                 break;
             case R.id.img_get_location:

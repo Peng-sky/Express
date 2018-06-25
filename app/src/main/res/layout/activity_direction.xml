@@ -28,72 +28,113 @@
             android:layout_alignParentTop="true"
             android:src="@mipmap/back_white" />
     </RelativeLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/textSize"
-            android:text="姓名:"/>
-
-        <EditText
-            android:id="@+id/et_direction_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp">
+        >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:text="姓名:"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:id="@+id/et_direction_name"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="@null"
+            android:textCursorDrawable="@drawable/edit_cursor_color"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:background="#ebebeb"
+        android:layout_marginTop="9dp"
+        android:layout_height="1dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/black"
             android:text="手机:"/>
 
         <EditText
             android:id="@+id/et_direction_phone"
+            android:background="@null"
+            android:layout_marginTop="10dp"
+            android:textCursorDrawable="@drawable/edit_cursor_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:background="#ebebeb"
+        android:layout_marginTop="9dp"
+        android:layout_height="1dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp">
+        >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/textSize"
-            android:text="所在地区"/>
+            android:textSize="16sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:text="所在地区:"/>
 
         <EditText
             android:id="@+id/et_region"
             android:layout_width="match_parent"
+            android:background="@null"
+            android:layout_marginTop="10dp"
+            android:textCursorDrawable="@drawable/edit_cursor_color"
             android:layout_height="wrap_content"
             android:hint="@string/PUA"/>
     </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:background="#ebebeb"
+        android:layout_marginTop="9dp"
+        android:layout_height="1dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp">
+        >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/textSize"
-            android:text="详细地址"/>
+            android:textSize="16sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:text="详细地址:"/>
 
         <EditText
             android:id="@+id/et_detail_address"
             android:layout_width="0dp"
+            android:background="@null"
+            android:layout_marginTop="10dp"
+            android:textCursorDrawable="@drawable/edit_cursor_color"
             android:layout_height="wrap_content"
             android:layout_weight="2"/>
 
@@ -103,14 +144,18 @@
             android:layout_height="30dp"
             android:src="@mipmap/ic_launcher"/>
     </LinearLayout>
-
+    <TextView
+        android:layout_width="match_parent"
+        android:background="#ebebeb"
+        android:layout_marginTop="9dp"
+        android:layout_height="1dp" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp">
 
         <CheckBox
-            android:id="@+id/cb_dir_default_sender"
+            android:id="@+id/cb_default_sender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -120,20 +165,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/cb_dir_default_sender"
+            android:layout_toEndOf="@id/cb_default_sender"
             android:layout_centerVertical="true"
             android:textSize="16sp"
             android:text="设为寄件默认地址"
-            android:layout_toRightOf="@id/cb_dir_default_sender" />
+            android:layout_toRightOf="@id/cb_default_sender" />
 
         <CheckBox
-            android:id="@+id/cb_dir_default_direction"
+            android:id="@+id/cb_default_direction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="139dp"
-            android:background="@drawable/checkbox_shape" />
+            android:layout_toStartOf="@id/tv_direction"
+            android:background="@drawable/checkbox_shape"
+            android:layout_toLeftOf="@id/tv_direction" />
 
         <TextView
             android:id="@+id/tv_direction"
@@ -148,14 +193,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:gravity="center"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <Button
             android:id="@+id/btn_commit"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:background="@color/button"
             android:textSize="24sp"
+            android:background="@drawable/button_shape"
+            android:textColor="@color/colorGrey"
             android:text="保存" />
     </LinearLayout>
 

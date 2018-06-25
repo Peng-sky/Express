@@ -20,7 +20,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        img_back = findViewById(R.id.img_back);
+        img_back = findViewById(R.id.back);
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
