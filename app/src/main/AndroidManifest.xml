@@ -71,6 +71,7 @@
         <activity android:name=".Activity.VipsActivity"/>
         <activity android:name=".Activity.SendOnLineActivity"/>
         <activity android:name=".Activity.SchoolActivity"/>
+        <activity android:name=".Activity.SetActivity"/>
 
         <!-- 个推SDK配置开始 -->
         <!-- 配置的第三方参数属性 -->

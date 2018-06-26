@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.peng.express.Adapter.DirOrderAdapter;
@@ -27,12 +28,20 @@ import static com.example.peng.express.Activity.LoginActivity.IP;
 
 public class UnCollectedActivity extends AppCompatActivity {
 
+    private ImageView img_back;
     private ListView list_delivering;
     private int type = 2;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_delivering);
+        setContentView(R.layout.activity_delivering);
+        img_back = findViewById(R.id.back);
+        img_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         list_delivering = findViewById(R.id.lv_delivering);
         OkHttpUtils.post()
                 .url(IP+"findAllDir")

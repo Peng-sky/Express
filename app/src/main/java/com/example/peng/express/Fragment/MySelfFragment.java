@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.peng.express.Activity.AboutActivity;
 import com.example.peng.express.Activity.CheckSchoolCourierActivity;
 import com.example.peng.express.Activity.SchoolCourierActivity;
+import com.example.peng.express.Activity.SetActivity;
 import com.example.peng.express.Bean.User;
 import com.example.peng.express.R;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -32,7 +33,7 @@ import static com.example.peng.express.Activity.LoginActivity.IP;
 public class MySelfFragment extends Fragment implements View.OnClickListener{
     private TextView school_courier,username;
     private Intent intent;
-    private LinearLayout line_about;
+    private LinearLayout line_about,line_set;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,6 +47,8 @@ public class MySelfFragment extends Fragment implements View.OnClickListener{
     private void initView(View view) {
         line_about = view.findViewById(R.id.line_about);
         line_about.setOnClickListener(this);
+        line_set = view.findViewById(R.id.line_setting);
+        line_set.setOnClickListener(this);
         intent = new Intent();
         school_courier = view.findViewById(R.id.school_courier);
         school_courier.setOnClickListener(this);
@@ -76,10 +79,13 @@ public class MySelfFragment extends Fragment implements View.OnClickListener{
             case R.id.school_courier:
                 startActivity(intent);
                 break;
-        }
-        switch (v.getId()){
+
             case R.id.line_about:
                 startActivity(new Intent(getActivity(), AboutActivity.class));
+                break;
+
+            case R.id.line_setting:
+                startActivity(new Intent(getActivity(), SetActivity.class));
                 break;
         }
     }
