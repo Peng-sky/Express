@@ -59,8 +59,8 @@
         <ImageView
 
             android:id="@+id/img_sender_info"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_gravity="center"
             android:src="@mipmap/add_sender"/>
     </LinearLayout>
@@ -68,7 +68,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#111"/>
+        android:background="#c8c8c8"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -123,16 +123,26 @@
 
         <ImageView
             android:id="@+id/img_addressee_info"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_gravity="center"
             android:src="@mipmap/add_sender"/>
+
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="#ebebeb"/>
+        android:layout_height="1dp"
+        android:background="#c8c8c8"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -168,6 +178,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:background="@null"
+                    android:textSize="16sp"
                     android:text="请选择"/>
 
                 <ImageView
@@ -208,8 +219,8 @@
 
                 <ImageView
                     android:id="@+id/img_minus"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
                     android:layout_weight="1"
                     android:src="@mipmap/minus"/>
 
@@ -309,9 +320,9 @@
 
                 <ImageView
                     android:id="@+id/img_package_minus"
-                    android:layout_width="20dp"
+                    android:layout_width="15dp"
                     android:layout_weight="1"
-                    android:layout_height="20dp"
+                    android:layout_height="15dp"
                     android:src="@mipmap/minus"/>
 
                 <EditText
@@ -338,7 +349,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@color/bg"
+        android:background="@color/white_bg"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -351,8 +362,7 @@
                 android:id="@+id/cb_agree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
-                android:background="@drawable/checkbox_shape"/>
+                android:checked="true"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -370,17 +380,19 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/bg"
-        android:gravity="center">
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/white_bg"
+        android:gravity="bottom">
 
         <Button
             android:id="@+id/btn_send_confirm"
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center"
-            android:textSize="24sp"
-            android:text="提交"/>
+            android:background="@color/title"
+            android:textSize="20sp"
+            android:text="提 交"/>
     </LinearLayout>
 
 </LinearLayout>

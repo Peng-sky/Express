@@ -21,8 +21,8 @@ import com.example.peng.express.Activity.CSActivity;
 import com.example.peng.express.Activity.CompleteActivity;
 import com.example.peng.express.Activity.FreightActivity;
 import com.example.peng.express.Activity.MainActivity;
+import com.example.peng.express.Activity.SchoolActivity;
 import com.example.peng.express.Activity.UnCollectedActivity;
-import com.example.peng.express.Activity.VipActivity;
 import com.example.peng.express.Activity.VipsActivity;
 import com.example.peng.express.Adapter.MainPageOrderListAdapter;
 import com.example.peng.express.R;
@@ -78,7 +78,7 @@ public class MainPageFragment extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.linear_order_send:
-
+                startActivity(new Intent(getActivity(), SchoolActivity.class));
                 break;
             case R.id.linear_freight:
                 startActivity(new Intent(getActivity(), FreightActivity.class));

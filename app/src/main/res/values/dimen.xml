@@ -12,7 +12,7 @@
     <dimen name="sendRPadding">10dp</dimen>
     <dimen name="scOrder">2dp</dimen>
     <dimen name="sc_order_details">5dp</dimen>
-    <dimen name="order_text_size">20sp</dimen>
+    <dimen name="order_text_size">18sp</dimen>
     <dimen name="text">20sp</dimen>
     <dimen name="height">50dp</dimen>
 </resources>

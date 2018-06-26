@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button btn_login;
     private String  phone= "";
     private String  password= "";
-    public static final String IP = "http://172.17.130.120:8080/servlet/";
+    public static final String IP = "http://192.168.1.244:8080/servlet/";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

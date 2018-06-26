@@ -114,7 +114,6 @@ public class SchoolCourierActivity extends AppCompatActivity implements View.OnC
                 transaction.commit();
                 break;
         }
-
     }
 
     private void hideFragment(FragmentTransaction transaction) {
