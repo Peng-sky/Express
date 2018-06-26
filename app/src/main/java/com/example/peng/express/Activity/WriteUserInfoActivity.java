@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.example.peng.express.Bean.User;
 import com.example.peng.express.R;
-import com.example.peng.express.Util.JsonUtil2;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 

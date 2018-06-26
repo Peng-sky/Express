@@ -3,20 +3,18 @@ package com.example.peng.express.Activity;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.peng.express.Adapter.viewPagerAdapter;
 import com.example.peng.express.Bean.User;
+import com.example.peng.express.Dialog.OnlineSendDialog;
 import com.example.peng.express.Fragment.MainPageFragment;
-import com.example.peng.express.Fragment.MainSelfFragment;
-import com.example.peng.express.Fragment.MyOrderFragment;
+import com.example.peng.express.Fragment.MySelfFragment;
 import com.example.peng.express.Fragment.OrderSendFragment;
 import com.example.peng.express.Fragment.PackageFragment;
 import com.example.peng.express.R;
@@ -60,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         img_myself = findViewById(R.id.img_myself);
 
         MainPageFragment mainPageFragment = new MainPageFragment();
-        MainSelfFragment selfFragment=new MainSelfFragment();
+        MySelfFragment selfFragment=new MySelfFragment();
         Intent intent = getIntent();
         User user = (User) intent.getSerializableExtra("user");
         Bundle bundle = new Bundle();
@@ -71,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         OrderSendFragment orderSendFragment = new OrderSendFragment();
         fragmentList = new ArrayList<>();
         fragmentList.add(mainPageFragment);
-        fragmentList.add(orderSendFragment);
+        //fragmentList.add(orderSendFragment);
         fragmentList.add(packageFragment);
         fragmentList.add(selfFragment);
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -90,17 +88,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 img_home.setImageResource(R.mipmap.home);
                 break;
             case R.id.linear_post_express:
-                viewPager.setCurrentItem(1);
-                tv_send.setTextColor(getResources().getColor(R.color.text_color));
-                img_send.setImageResource(R.mipmap.send_se);
+//                viewPager.setCurrentItem(1);
+//                tv_send.setTextColor(getResources().getColor(R.color.text_color));
+//                img_send.setImageResource(R.mipmap.send_se);
+                OnlineSendDialog onlineSendDialog = new OnlineSendDialog(MainActivity.this);
+                onlineSendDialog.show();
                 break;
             case R.id.linear_package:
-                viewPager.setCurrentItem(2);
+                viewPager.setCurrentItem(1);
                 tv_package.setTextColor(getResources().getColor(R.color.text_color));
                 img_package.setImageResource(R.mipmap.express_se);
                 break;
             case R.id.linear_myself:
-                viewPager.setCurrentItem(3);
+                viewPager.setCurrentItem(2);
                 tv_main.setTextColor(getResources().getColor(R.color.text_color));
                 img_myself.setImageResource(R.mipmap.main_se);
                 break;

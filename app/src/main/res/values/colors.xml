@@ -5,7 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorGrey">#ffffff</color>
     <color name="home_bottom">#ffffff</color>
-    <color name="bg">#ebebeb</color>
+    <color name="bg">#f1f3f2</color>
     <color name="mainPage">#ebebeb</color>
     <color name="gray">#727069</color>
     <color name="white_bg">#ffffff</color>
@@ -15,7 +15,8 @@
     <color name="button">#166eab</color>
     <color name="title">#38aafb</color>
     <color name="black">#111111</color>
-
+    <color name="btn_color">#ff6735</color>
+    <color name="sc_text">#d7d7d7</color>
 
 
     <!-- Screens background color-->

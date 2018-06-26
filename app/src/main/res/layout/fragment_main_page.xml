@@ -23,12 +23,12 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@mipmap/order_send" />
+                android:src="@mipmap/school" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="预约寄件" />
+                android:text="校园寄取" />
         </LinearLayout>
 
         <LinearLayout
@@ -116,14 +116,14 @@
             android:id="@+id/tv_uncollected_package"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:layout_weight="1"
             android:text="未收包裹"/>
 
         <TextView
-            android:layout_width="8dp"
+            android:layout_width="4dp"
             android:layout_height="match_parent"
-            android:background="@color/colorAccent"
+            android:background="@color/bg"
             />
 
         <ImageView
@@ -138,7 +138,7 @@
             android:id="@+id/tv_finish_send"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:layout_weight="1"
             android:text="完成派送"/>
 

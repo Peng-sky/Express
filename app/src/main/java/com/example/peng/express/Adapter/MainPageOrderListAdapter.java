@@ -53,9 +53,9 @@ public class MainPageOrderListAdapter extends BaseAdapter {
         time = convertView.findViewById(R.id.time);
 
         qianshouimg.setImageResource(qianshouimgs[position]);
-        tracknumber.setText(track_number[position] + "");
-        state.setText(states[position] + "");
-        time.setText(times[position] + "");
+        tracknumber.setText(track_number[position]);
+        state.setText(states[position]);
+        time.setText(times[position]);
 
         return convertView;
     }

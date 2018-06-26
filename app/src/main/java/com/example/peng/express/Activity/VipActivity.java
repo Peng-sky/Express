@@ -1,6 +1,7 @@
 package com.example.peng.express.Activity;
 
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -29,7 +30,7 @@ import static com.example.peng.express.Activity.LoginActivity.IP;
 import static com.example.peng.express.Activity.WriteUserInfoActivity.JSON;
 
 public class VipActivity extends AppCompatActivity{
-    private EditText track_number,express_company,phone,address,sms,remark;
+    private EditText username,track_number,express_company,phone,address,remark;
     private Button commit;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,7 +52,7 @@ public class VipActivity extends AppCompatActivity{
                 .readTimeout(20, TimeUnit.SECONDS)
                 .build();
         final Request request = new Request.Builder()
-                .url(IP+"Order")
+                .url(IP+"insetSC")
                 .post(body)
                 .build();
         Call call = okHttpClient.newCall(request);
@@ -67,7 +68,10 @@ public class VipActivity extends AppCompatActivity{
                     JSONObject jsonObject = new JSONObject(response.body().string());
                     String result = jsonObject.optString("msg");
                     if (result.equals("1")){
+                        Looper.prepare();
                         Toast.makeText(VipActivity.this,"订单创建成功",Toast.LENGTH_LONG).show();
+                        finish();
+                        Looper.loop();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -77,23 +81,23 @@ public class VipActivity extends AppCompatActivity{
     }
 
     private void initView() {
+        username = findViewById(R.id.username);
         track_number = findViewById(R.id.track_number);
         express_company = findViewById(R.id.express_company);
         phone = findViewById(R.id.phone);
         address = findViewById(R.id.address);
-        sms = findViewById(R.id.sms);
         commit = findViewById(R.id.commit);
         remark = findViewById(R.id.remark);
     }
 
     private String getData(){
+        String user = username.getText().toString();
         String number = track_number.getText().toString();
         String company = express_company.getText().toString();
         String phones = phone.getText().toString();
-        String smss = sms.getText().toString();
         String commits = commit.getText().toString();
         String remarks = remark.getText().toString();
-        SchoolOrder.Body so = new SchoolOrder.Body(number,company,phones,smss,commits,remarks);
+        SchoolOrder.Body so = new SchoolOrder.Body(user,phones,number,company,commits,remarks);
         Gson gson = new Gson();
         String json = gson.toJson(so);
         return json;

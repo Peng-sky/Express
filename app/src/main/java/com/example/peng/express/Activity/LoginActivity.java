@@ -4,42 +4,24 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.peng.express.Bean.User;
-import com.example.peng.express.Fragment.MyOrderFragment;
-import com.example.peng.express.Interface.HttpCallbackListener;
 import com.example.peng.express.R;
-import com.example.peng.express.Service.DemoIntentService;
-import com.example.peng.express.Service.DemoPushService;
-import com.example.peng.express.Util.HttpUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.igexin.sdk.PushManager;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-
 import okhttp3.Call;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView tv_forget_password,tv_register;
@@ -47,15 +29,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button btn_login;
     private String  phone= "";
     private String  password= "";
-    public static final String IP = "http://192.168.43.235:8080/servlet/";
+    public static final String IP = "http://172.17.130.120:8080/servlet/";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        PushManager.getInstance().initialize(getApplicationContext(), DemoPushService.class);
-        PushManager.getInstance().initialize(getApplicationContext(), DemoIntentService.class);
-
         initView();
         initEvent();
     }
@@ -90,7 +69,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         Log.i("internet", "onError: "+e);
                         e.printStackTrace();
                         Toast.makeText(LoginActivity.this, "网络错误", Toast.LENGTH_SHORT).show();
-
                     }
                     @Override
                     public void onResponse(String response, int id) {

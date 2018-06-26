@@ -29,7 +29,7 @@ import okhttp3.Response;
 
 import static com.example.peng.express.Activity.LoginActivity.IP;
 
-public class MainSelfFragment extends Fragment implements View.OnClickListener{
+public class MySelfFragment extends Fragment implements View.OnClickListener{
     private TextView school_courier,username;
     private Intent intent;
     private LinearLayout line_about;

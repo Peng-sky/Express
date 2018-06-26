@@ -13,9 +13,9 @@ import java.util.List;
 
 public class VpAdapter extends FragmentPagerAdapter {
     private List<Fragment> fragmentList;
-    private List<String> list_title;
+    private String[] list_title;
 
-    public VpAdapter(FragmentManager fm, List<Fragment> fragmentList,List<String> list_title) {
+    public VpAdapter(FragmentManager fm, List<Fragment> fragmentList,String[] list_title) {
         super(fm);
         this.fragmentList = fragmentList;
         this.list_title = list_title;
@@ -28,12 +28,12 @@ public class VpAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return list_title.size();
+        return list_title.length;
     }
 
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return list_title.get(position%list_title.size());
+        return list_title[position];
     }
 }

@@ -65,7 +65,11 @@
         <activity android:name=".Activity.VipActivity"/>
         <activity android:name=".Activity.CheckSchoolCourierActivity"/>
         <activity android:name=".Activity.SchoolCourierActivity"/>
-
+        <activity android:name=".Activity.SCOrderDetailsActivity"/>
+        <activity android:name=".Activity.UnCollectedActivity"/>
+        <activity android:name=".Activity.CompleteActivity"/>
+        <activity android:name=".Activity.VipsActivity"/>
+        <activity android:name=".Activity.SendOnLineActivity"/>
 
         <!-- 个推SDK配置开始 -->
         <!-- 配置的第三方参数属性 -->

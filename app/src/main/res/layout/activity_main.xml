@@ -18,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/home_bottom"
+        android:padding="5dp"
         android:gravity="center">
 
         <LinearLayout
@@ -39,6 +40,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_color"
+                android:layout_marginTop="-10dp"
+                android:textSize="10sp"
                 android:text="首页" />
         </LinearLayout>
 
@@ -60,6 +63,8 @@
                 android:id="@+id/tv_send"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="-10dp"
+                android:textSize="10sp"
                 android:text="寄快递" />
         </LinearLayout>
 
@@ -82,6 +87,8 @@
                 android:id="@+id/tv_package"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="-10dp"
+                android:textSize="10sp"
                 android:text="包裹" />
         </LinearLayout>
 
@@ -103,6 +110,8 @@
                 android:id="@+id/tv_main"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="-10dp"
+                android:textSize="10sp"
                 android:text="个人" />
         </LinearLayout>
 

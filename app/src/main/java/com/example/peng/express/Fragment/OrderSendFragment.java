@@ -1,13 +1,10 @@
 package com.example.peng.express.Fragment;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Looper;
 import android.support.annotation.NonNull;
@@ -31,27 +28,15 @@ import android.widget.Toast;
 import com.example.peng.express.Activity.DirectionActivity;
 import com.example.peng.express.Activity.SenderAddressActivity;
 import com.example.peng.express.Bean.Order;
-import com.example.peng.express.Interface.HttpCallbackListener;
 import com.example.peng.express.R;
 import com.google.gson.Gson;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.builder.OkHttpRequestBuilder;
-import com.zhy.http.okhttp.request.OkHttpRequest;
-import com.zhy.http.okhttp.request.RequestCall;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-import java.util.zip.GZIPOutputStream;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -60,7 +45,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 import static com.example.peng.express.Activity.LoginActivity.IP;
 

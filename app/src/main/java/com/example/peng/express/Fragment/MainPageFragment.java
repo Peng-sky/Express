@@ -7,6 +7,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +18,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.peng.express.Activity.CSActivity;
+import com.example.peng.express.Activity.CompleteActivity;
+import com.example.peng.express.Activity.FreightActivity;
 import com.example.peng.express.Activity.MainActivity;
+import com.example.peng.express.Activity.UnCollectedActivity;
 import com.example.peng.express.Activity.VipActivity;
+import com.example.peng.express.Activity.VipsActivity;
 import com.example.peng.express.Adapter.MainPageOrderListAdapter;
 import com.example.peng.express.R;
 
@@ -65,6 +70,7 @@ public class MainPageFragment extends Fragment implements View.OnClickListener{
         et_search.setFocusable(false);
         et_search.setClickable(true);
         listView = view.findViewById(R.id.main_page_list_view);
+        listView.setVerticalScrollBarEnabled(false);
         listView.setAdapter(new MainPageOrderListAdapter(getActivity(),qianshouimg,track_number,state,time));
     }
 
@@ -74,19 +80,27 @@ public class MainPageFragment extends Fragment implements View.OnClickListener{
             case R.id.linear_order_send:
 
                 break;
-            case R.id.linear_freight:break;
+            case R.id.linear_freight:
+                startActivity(new Intent(getActivity(), FreightActivity.class));
+                break;
             case R.id.linear_contact_CS:
                 startActivity(new Intent(getActivity(), CSActivity.class));
                 break;
             case R.id.linear_vip:
-                startActivity(new Intent(getActivity(), VipActivity.class));
+                startActivity(new Intent(getActivity(), VipsActivity.class));
                 break;
-            case R.id.tv_uncollected_package:break;
-            case R.id.tv_finish_send:break;
+            case R.id.tv_uncollected_package:
+                startActivity(new Intent(getActivity(), UnCollectedActivity.class));
+                break;
+            case R.id.tv_finish_send:
+                startActivity(new Intent(getActivity(), CompleteActivity.class));
+                break;
             case R.id.img_scan:
                 customScan();
                 break;
-            case R.id.img_search:break;
+            case R.id.img_search:
+
+                break;
             case R.id.et_search:break;
         }
     }

@@ -46,7 +46,7 @@ public class AllOrderAdapter extends BaseAdapter {
             holder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.item_sc_order_list,null);
-            holder.username = convertView.findViewById(R.id.username);
+            holder.username = convertView.findViewById(R.id.sc_username);
             holder.phone = convertView.findViewById(R.id.phone);
             holder.express_company = convertView.findViewById(R.id.express_company);
             holder.track_number = convertView.findViewById(R.id.track_number);
@@ -63,9 +63,7 @@ public class AllOrderAdapter extends BaseAdapter {
         holder.track_number.setText(bodyList.get(i).getTrack_number());
         holder.address.setText(bodyList.get(i).getAddress());
         holder.reach_time.setText(bodyList.get(i).getState());
-
         return convertView;
-
     }
 
     class ViewHolder{

@@ -34,7 +34,7 @@ import java.util.List;
 import static com.example.peng.express.Activity.LoginActivity.IP;
 
 public class SchoolCourierActivity extends AppCompatActivity implements View.OnClickListener {
-    private TextView username,phone,express_company,track_number,address,reach_time;
+
     private TextView myOrder,allOrder;
     private Fragment f1,f2;
     private FragmentManager manager;
@@ -151,8 +151,8 @@ public class SchoolCourierActivity extends AppCompatActivity implements View.OnC
     }
 
     public void openNotification(String message,SchoolOrder.Body body){
-        Intent resultIntent = new Intent(this,MainActivity.class);
-        resultIntent.putExtra("orderInfo", body);
+        Intent resultIntent = new Intent(SchoolCourierActivity.this,SCOrderDetailsActivity.class);
+        resultIntent.putExtra("body", body);
         PendingIntent resultPendingIntent = PendingIntent.getActivity(this,0,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)

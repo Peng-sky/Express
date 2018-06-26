@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white_bg"
     android:orientation="vertical">
 
     <LinearLayout
@@ -24,7 +25,7 @@
             android:text="寄件地址"
             android:layout_weight="1"
             android:gravity="left"
-            android:textSize="24sp"
+            android:textSize="@dimen/order_text_size"
             android:visibility="visible"/>
 
         <LinearLayout
@@ -89,7 +90,7 @@
             android:layout_weight="1"
             android:text="收件地址"
             android:gravity="left"
-            android:textSize="24sp"
+            android:textSize="@dimen/order_text_size"
             android:visibility="visible"/>
 
         <LinearLayout
@@ -130,8 +131,8 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#111"/>
+        android:layout_height="30dp"
+        android:background="#ebebeb"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -151,7 +152,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="24sp"
+                android:textSize="@dimen/order_text_size"
                 android:text="物品类型"/>
 
             <LinearLayout
@@ -195,7 +196,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="24sp"
+                android:textSize="@dimen/order_text_size"
                 android:text="预估重量(KG)"/>
 
             <LinearLayout
@@ -250,7 +251,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="24sp"
+                android:textSize="@dimen/order_text_size"
                 android:text="代收金额(元)"/>
 
             <LinearLayout
@@ -296,7 +297,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="24sp"
+                android:textSize="@dimen/order_text_size"
                 android:text="包裹件数(件)"/>
 
             <LinearLayout
@@ -369,14 +370,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/bg"
         android:gravity="center">
 
         <Button
             android:id="@+id/btn_send_confirm"
             android:layout_width="200dp"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:gravity="center"
             android:textSize="24sp"
             android:text="提交"/>

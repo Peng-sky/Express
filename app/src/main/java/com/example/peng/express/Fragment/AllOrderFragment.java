@@ -32,6 +32,7 @@ import static com.example.peng.express.Activity.LoginActivity.IP;
 public class AllOrderFragment extends Fragment {
     private ListView list_all_order;
     private List<SchoolOrder.Body> bodyList;
+    private AllOrderAdapter allOrderAdapter;
 
     @Nullable
     @Override
@@ -52,15 +53,26 @@ public class AllOrderFragment extends Fragment {
                         System.out.println(response);
                         Gson gson = new Gson();
                         bodyList = gson.fromJson(response,new TypeToken<List<SchoolOrder.Body>>(){}.getType());
-                        list_all_order.setAdapter(new AllOrderAdapter(getActivity(),bodyList));
+                        allOrderAdapter = new AllOrderAdapter(getActivity(),bodyList);
+                        list_all_order.setAdapter(allOrderAdapter);
+                        list_all_order.invalidate();
+                        allOrderAdapter.notifyDataSetChanged();
                         list_all_order.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                startActivity(new Intent(getActivity(), SCOrderDetailsActivity.class));
+                                Intent intent = new Intent(getActivity(),SCOrderDetailsActivity.class);
+                                intent.putExtra("body",bodyList.get(position));
+                                startActivity(intent);
+                                getActivity().finish();
                             }
                         });
                     }
                 });
         return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
