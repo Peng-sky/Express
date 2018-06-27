@@ -1,9 +1,12 @@
 package com.example.peng.express.Fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,14 +27,31 @@ import okhttp3.Call;
 
 import static com.example.peng.express.Activity.LoginActivity.IP;
 
-public class DeliveringFragment extends Fragment {
+public class DeliveringFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     private ListView list_delivering;
     private int type = 2;
+    private List<DirOrder.Body> bodyList;
+    private DirOrderAdapter dirOrderAdapter;
+    private SwipeRefreshLayout swipe;
+    private boolean isRefresh = false;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_delivering,null);
         list_delivering = view.findViewById(R.id.lv_delivering);
+        swipe = view.findViewById(R.id.swipe);
+        swipe.setColorSchemeColors(Color.BLUE,Color.GREEN,Color.YELLOW,Color.RED);
+// 设置手指在屏幕下拉多少距离会触发下拉刷新
+        swipe.setDistanceToTriggerSync(300);
+        swipe.setDistanceToTriggerSync(300);
+        // 设定下拉圆圈的背景
+        swipe.setProgressBackgroundColorSchemeColor(Color.WHITE);
+        // 设置圆圈的大小
+        swipe.setSize(SwipeRefreshLayout.LARGE);
+        swipe.measure(0,0);
+        swipe.setRefreshing(true);
+        //设置下拉刷新的监听
+        swipe.setOnRefreshListener(this);
         OkHttpUtils.post()
                 .url(IP+"findAllDir")
                 .addParams("type",type+"")
@@ -53,9 +73,51 @@ public class DeliveringFragment extends Fragment {
 //                                Intent intent = new Intent(getActivity())
                             }
                         });
+                        if (swipe.isRefreshing()){
+                            swipe.setRefreshing(false);
+                        }
                     }
                 });
 
         return view;
+    }
+
+    @Override
+    public void onRefresh() {
+        if (!isRefresh){
+            isRefresh = true;
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //显示或隐藏刷新进度条
+                    swipe.setRefreshing(true);
+                    OkHttpUtils.post()
+                            .url(IP+"findAllDir")
+                            .addParams("type",type+"")
+                            .build()
+                            .execute(new StringCallback() {
+                                @Override
+                                public void onError(Call call, Exception e, int id) {
+                                    e.printStackTrace();
+                                }
+
+                                @Override
+                                public void onResponse(String response, int id) {
+                                    Gson gson = new Gson();
+                                    List<DirOrder.Body> bodyList = gson.fromJson(response,new TypeToken< List<DirOrder.Body>>(){}.getType());
+                                    dirOrderAdapter=new DirOrderAdapter(getActivity(),bodyList,type);
+                                    dirOrderAdapter.refresh(bodyList);
+                                    dirOrderAdapter.notifyDataSetChanged();
+                                    dirOrderAdapter = new DirOrderAdapter(getActivity(),bodyList,type);
+                                    isRefresh = false;
+                                    if (swipe.isRefreshing()) {
+                                        swipe.setRefreshing(false);
+                                    }
+                                }
+
+                            });
+                }
+            },0);
+        }
     }
 }

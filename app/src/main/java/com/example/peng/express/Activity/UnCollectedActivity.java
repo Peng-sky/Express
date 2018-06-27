@@ -35,7 +35,6 @@ public class UnCollectedActivity extends AppCompatActivity implements SwipeRefre
     private ListView list_delivering;
     private int type = 2;
     private SwipeRefreshLayout swipe;
-    private List<DirOrder.Body> bodyList;
     private DirOrderAdapter dirOrderAdapter;
     private boolean isRefresh = false;
     @Override
@@ -101,7 +100,7 @@ public class UnCollectedActivity extends AppCompatActivity implements SwipeRefre
                 @Override
                 public void run() {
                     //显示或隐藏刷新进度条
-                    swipe.setRefreshing(false);
+                    swipe.setRefreshing(true);
                     OkHttpUtils.post()
                             .url(IP+"findAllDir")
                             .addParams("type",type+"")
@@ -126,7 +125,7 @@ public class UnCollectedActivity extends AppCompatActivity implements SwipeRefre
 
                             });
                 }
-            },2000);
+            },0);
         }
     }
 

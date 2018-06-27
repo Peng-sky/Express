@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Express</string>
+    <string name="app_name">闪云</string>
     <string name="username_hint">输入手机号</string>
     <string name="password_hint">输入密码</string>
     <string name="text_commit">预约时间:  8:00-17:00，逾时次日服务</string>
