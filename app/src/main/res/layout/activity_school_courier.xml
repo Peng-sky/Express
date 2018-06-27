@@ -46,6 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:textColor="@color/title"
             android:textSize="16sp"
             android:text="全部订单"/>
 
@@ -56,6 +57,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textSize="16sp"
+            android:textColor="@color/sc_text"
             android:text="我的订单"/>
     </LinearLayout>
 

@@ -26,10 +26,18 @@
             android:src="@mipmap/back_white" />
     </RelativeLayout>
 
-    <ListView
-        android:id="@+id/lv_delivering"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </ListView>
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/lv_delivering"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 
 </LinearLayout>

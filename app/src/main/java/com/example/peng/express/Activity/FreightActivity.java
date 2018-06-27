@@ -39,7 +39,17 @@ public class FreightActivity extends AppCompatActivity {
 
         webView.loadUrl("https://m.zto.com/Price/Index");
 
-        webView.setWebChromeClient(webChromeClient);
+        webView.setWebChromeClient(new WebChromeClient(){
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                if (newProgress ==100){
+                    progressBar.setVisibility(View.GONE);
+                }else {
+                    progressBar.setVisibility(View.VISIBLE);
+                    progressBar.setProgress(newProgress);
+                }
+            }
+        });
         webView.setWebViewClient(webViewClient);
 
         WebSettings webSettings = webView.getSettings();

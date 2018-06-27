@@ -1,6 +1,7 @@
 package com.example.peng.express.Adapter;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.peng.express.Activity.DirectionActivity;
 import com.example.peng.express.Bean.DirOrder;
+import com.example.peng.express.Bean.SchoolOrder;
 import com.example.peng.express.R;
 
 import java.util.List;
@@ -28,6 +30,9 @@ public class DirOrderAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+        if (bodyList.size()==0){
+            Log.i("refresh", "getCount: 为空");
+        }
         return bodyList.size();
     }
 
@@ -119,6 +124,12 @@ public class DirOrderAdapter extends BaseAdapter {
 //            state = "订单已完成";
 //        }
         return convertView;
+    }
+
+    public void refresh(List<DirOrder.Body> bodies){
+        bodyList.removeAll(bodyList);
+        bodyList.addAll(bodies);
+        notifyDataSetChanged();
     }
 
     class ViewHolder {

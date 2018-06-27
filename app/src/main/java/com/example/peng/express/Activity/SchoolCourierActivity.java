@@ -94,8 +94,12 @@ public class SchoolCourierActivity extends AppCompatActivity implements View.OnC
         manager =getSupportFragmentManager();
         transaction = manager.beginTransaction();
 
+        myOrder.setTextColor(getResources().getColor(R.color.sc_text));
+        allOrder.setTextColor(getResources().getColor(R.color.sc_text));
+
         switch (v.getId()){
             case R.id.allOrder:
+                allOrder.setTextColor(getResources().getColor(R.color.title));
                 /**
                  * 为了防止重叠，需要点击之前先移除其他Fragment
                  */
@@ -105,6 +109,7 @@ public class SchoolCourierActivity extends AppCompatActivity implements View.OnC
                 transaction.commit();
                 break;
             case R.id.myOrder:
+                myOrder.setTextColor(getResources().getColor(R.color.title));
                 /**
                  * 为了防止重叠，需要点击之前先移除其他Fragment
                  */

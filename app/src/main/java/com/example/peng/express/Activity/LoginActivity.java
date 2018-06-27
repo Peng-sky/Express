@@ -1,5 +1,6 @@
 package com.example.peng.express.Activity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -30,6 +31,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private String  phone= "";
     private String  password= "";
     public static final String IP = "http://192.168.1.244:8080/servlet/";
+    private ProgressDialog dlg;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +53,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         tv_register = findViewById(R.id.tv_register);
         tv_forget_password.setOnClickListener(this);
         tv_register.setOnClickListener(this);
+
     }
 
     public void login() {
@@ -60,6 +63,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Toast.makeText(LoginActivity.this, "用户名或密码为空！", Toast.LENGTH_SHORT).show();
             return;
         }
+        dlg = new ProgressDialog(this);
+        dlg.setIcon(R.drawable.ic_launcher_background);
+        dlg.setTitle("进度条");
+        dlg.setMessage("这是一个进度条");
+        dlg.setProgressStyle(ProgressDialog.STYLE_SPINNER);//设置水平进度条
+        dlg.show();
         OkHttpUtils.get()
                 .url(IP+"UserManager?"+"phone_number="+phone+"&password="+password)
                 .build()
@@ -103,6 +112,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         }
                     }
                 });
+        dlg.dismiss();
     }
 
     private boolean isInputValid() {
@@ -114,13 +124,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_login:
-                ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);//1.创建一个ProgressDialog的实例
-                progressDialog.setTitle("这是一个 progressDialog");//2.设置标题
-                progressDialog.setMessage("正在加载中，请稍等......");//3.设置显示内容
-                progressDialog.setCancelable(true);//4.设置可否用back键关闭对话框
-                progressDialog.show();//5.将ProgessDialog显示出来
+
                 login();
-                progressDialog.cancel();
 //                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
 //                startActivity(intent);
 //                Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
