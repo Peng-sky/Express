@@ -59,17 +59,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         MainPageFragment mainPageFragment = new MainPageFragment();
         MySelfFragment selfFragment=new MySelfFragment();
-        Intent intent = getIntent();
-        User user = (User) intent.getSerializableExtra("user");
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("user",user);
-        bundle.putSerializable("phone",user.getPhone_number());
-        selfFragment.setArguments(bundle);
         PackageFragment packageFragment = new PackageFragment();
-        OrderSendFragment orderSendFragment = new OrderSendFragment();
         fragmentList = new ArrayList<>();
         fragmentList.add(mainPageFragment);
-        //fragmentList.add(orderSendFragment);
         fragmentList.add(packageFragment);
         fragmentList.add(selfFragment);
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -103,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 viewPager.setCurrentItem(2);
                 tv_main.setTextColor(getResources().getColor(R.color.text_color));
                 img_myself.setImageResource(R.mipmap.main_se);
+                img_myself.setPadding(5,5,5,5);
                 break;
         }
     }

@@ -218,7 +218,7 @@
             android:id="@+id/add_to_my_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="接受订单"/>
+            android:text="确认"/>
 
     </LinearLayout>
 

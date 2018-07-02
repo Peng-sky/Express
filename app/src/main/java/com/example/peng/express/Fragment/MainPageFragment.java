@@ -1,13 +1,20 @@
 package com.example.peng.express.Fragment;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +23,28 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.peng.express.Activity.CSActivity;
 import com.example.peng.express.Activity.CompleteActivity;
 import com.example.peng.express.Activity.FreightActivity;
 import com.example.peng.express.Activity.MainActivity;
 import com.example.peng.express.Activity.SchoolActivity;
+import com.example.peng.express.Activity.SearchActivity;
 import com.example.peng.express.Activity.UnCollectedActivity;
 import com.example.peng.express.Activity.VipsActivity;
 import com.example.peng.express.Adapter.MainPageOrderListAdapter;
 import com.example.peng.express.R;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+import geogle.zxing.activity.CaptureActivity;
+
+import static android.app.Activity.RESULT_OK;
 
 public class MainPageFragment extends Fragment implements View.OnClickListener{
     private LinearLayout linear_order_send,linear_freight,linear_vip,linear_contact_CS;
@@ -37,6 +56,24 @@ public class MainPageFragment extends Fragment implements View.OnClickListener{
     private String[] track_number= new String[]{"1111111111111","2222222222222","3333333333333"};
     private String[] state= new String[]{"欢迎为你服务","正在为你服务","期待下次为你服务"};
     private String[] time= new String[]{"2016-08-11 21：26：56","2016-08-12 21：26：56","2016-08-13 21：26：56"};
+    private ViewPager banner;
+    private List<ImageView> images;
+    private List<View> dots;
+    private int currentItem;
+    private int oldPosition = 0;
+    private ViewPagerAdapter pagerAdapter;
+    //打开扫描界面请求码
+    private int REQUEST_CODE = 0x01;
+    //扫描成功返回码
+    private int RESULT_OK = 0xA1;
+
+    private ScheduledExecutorService scheduledExecutorService;
+
+    private int[] imageIds = new int[]{
+            R.mipmap.banner1,
+            R.mipmap.banner2,
+            R.mipmap.banner3
+    };
 
     @Nullable
     @Override
@@ -72,7 +109,118 @@ public class MainPageFragment extends Fragment implements View.OnClickListener{
         listView = view.findViewById(R.id.main_page_list_view);
         listView.setVerticalScrollBarEnabled(false);
         listView.setAdapter(new MainPageOrderListAdapter(getActivity(),qianshouimg,track_number,state,time));
+        images = new ArrayList<>();
+        for (int i = 0; i < imageIds.length; i++) {
+            ImageView imageView = new ImageView(getActivity());
+            imageView.setBackgroundResource(imageIds[i]);
+            images.add(imageView);
+        }
+        dots = new ArrayList<>();
+        dots.add(view.findViewById(R.id.dot_0));
+        dots.add(view.findViewById(R.id.dot_1));
+        dots.add(view.findViewById(R.id.dot_2));
+
+        banner = view.findViewById(R.id.banner);
+        pagerAdapter = new ViewPagerAdapter();
+        banner.setAdapter(pagerAdapter);
+        banner.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                dots.get(position).setBackgroundResource(R.mipmap.dot_focused);
+                dots.get(oldPosition).setBackgroundResource(R.mipmap.dot_normal);
+
+                oldPosition = position;
+                currentItem = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
     }
+
+    /**
+     * 自定义Adapter
+     * @author liuyazhuang
+     *
+     */
+    private class ViewPagerAdapter extends PagerAdapter {
+
+        @Override
+        public int getCount() {
+            return images.size();
+        }
+
+        @Override
+        public boolean isViewFromObject(View arg0, Object arg1) {
+            return arg0 == arg1;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup view, int position, Object object) {
+            // TODO Auto-generated method stub
+//			super.destroyItem(container, position, object);
+//			view.removeView(view.getChildAt(position));
+//			view.removeViewAt(position);
+            view.removeView(images.get(position));
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup view, int position) {
+            // TODO Auto-generated method stub
+            view.addView(images.get(position));
+            return images.get(position);
+        }
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+        scheduledExecutorService.scheduleWithFixedDelay(new ViewPageTask(),2,2, TimeUnit.SECONDS);
+    }
+
+    /**
+     * 图片轮播任务
+     * @author liuyazhuang
+     *
+     */
+    private class ViewPageTask implements Runnable{
+
+        @Override
+        public void run() {
+            currentItem = (currentItem + 1) % imageIds.length;
+            mHandler.sendEmptyMessage(0);
+        }
+    }
+
+    /**
+     * 接收子线程传递过来的数据
+     */
+    private Handler mHandler = new Handler(){
+        public void handleMessage(android.os.Message msg) {
+            banner.setCurrentItem(currentItem);
+        };
+    };
+
+    @Override
+    public void onStop() {
+        // TODO Auto-generated method stub
+        super.onStop();
+        if(scheduledExecutorService != null){
+            scheduledExecutorService.shutdown();
+            scheduledExecutorService = null;
+        }
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -96,23 +244,27 @@ public class MainPageFragment extends Fragment implements View.OnClickListener{
                 startActivity(new Intent(getActivity(), CompleteActivity.class));
                 break;
             case R.id.img_scan:
-                customScan();
+                startQrCode();
                 break;
             case R.id.img_search:
 
                 break;
-            case R.id.et_search:break;
+            case R.id.et_search:
+                startActivity(new Intent(getActivity(), SearchActivity.class));
+                break;
         }
     }
 
-    public void customScan(){
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent,0x0001);
+    // 开始扫码
+    private void startQrCode() {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            // 申请权限
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA}, 100);
+            return;
+        }
+        // 二维码扫码
+        Intent intent = new Intent(getActivity(), CaptureActivity.class);
+        startActivity(intent);
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-    }
 }

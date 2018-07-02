@@ -6,16 +6,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.peng.express.Bean.SchoolOrder;
-import com.example.peng.express.Bean.User;
 import com.example.peng.express.R;
-import com.google.gson.JsonObject;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -23,7 +20,7 @@ import okhttp3.Call;
 
 import static com.example.peng.express.Activity.LoginActivity.IP;
 
-public class SCOrderDetailsActivity extends AppCompatActivity {
+public class AcceptScOrderActivity extends AppCompatActivity {
     private TextView username,phone,express_company,track_number,address,reach_time;
     private Button add_to_my_order;
     private SchoolOrder.Body body;
@@ -65,8 +62,8 @@ public class SCOrderDetailsActivity extends AppCompatActivity {
 
                             }
                         });
-                Toast.makeText(SCOrderDetailsActivity.this, "订单添加成功", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(SCOrderDetailsActivity.this,SchoolCourierActivity.class));
+                Toast.makeText(AcceptScOrderActivity.this, "订单添加成功", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(AcceptScOrderActivity.this,SchoolCourierActivity.class));
                 finish();
             }
         });

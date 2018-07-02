@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="完善资料"
+            android:text="修改资料"
             android:textColor="@color/colorGrey"
             android:textSize="24sp" />
 
@@ -31,6 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#111"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -231,9 +232,10 @@
             android:hint="请输入你的省市区" />
         <ImageView
             android:id="@+id/img_get_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"/>
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/location"/>
     </LinearLayout>
     <TextView
         android:layout_width="match_parent"
@@ -282,6 +284,5 @@
             android:textColor="@color/colorGrey"
             android:textSize="24dp" />
     </LinearLayout>
-
 
 </LinearLayout>

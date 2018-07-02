@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -19,9 +21,13 @@ import com.example.peng.express.Bean.User;
 import com.example.peng.express.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.igexin.sdk.PushManager;
+import com.mob.MobSDK;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
+import cn.smssdk.EventHandler;
+import cn.smssdk.SMSSDK;
 import okhttp3.Call;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -30,16 +36,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button btn_login;
     private String  phone= "";
     private String  password= "";
-    public static final String IP = "http://192.168.1.244:8080/servlet/";
+    public static final String IP = "http://192.168.137.139:8080/servlet/";
     private ProgressDialog dlg;
+
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         initView();
         initEvent();
     }
+
 
     private void initEvent() {
         btn_login.setOnClickListener(this);
@@ -64,9 +75,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
         dlg = new ProgressDialog(this);
-        dlg.setIcon(R.drawable.ic_launcher_background);
-        dlg.setTitle("进度条");
-        dlg.setMessage("这是一个进度条");
+        dlg.setIcon(R.mipmap.logo);
+        dlg.setMessage("加载中请稍后");
         dlg.setProgressStyle(ProgressDialog.STYLE_SPINNER);//设置水平进度条
         dlg.show();
         OkHttpUtils.get()
@@ -101,18 +111,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         SharedPreferences sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("phone",user.getPhone_number());
+                        editor.putString("userType",user.getUser_type());
                         editor.commit();
                         if (user.getPhone_number().equals(phone)){
                             Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                             Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-                            intent.putExtra("user",user);
+                            dlg.dismiss();
                             startActivity(intent);
                         }else {
                             Toast.makeText(LoginActivity.this,"登录失败，用户名或密码错误",Toast.LENGTH_SHORT).show();
+                            dlg.dismiss();
                         }
                     }
                 });
-        dlg.dismiss();
     }
 
     private boolean isInputValid() {
@@ -134,8 +145,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(new Intent(LoginActivity.this,FindPasswordActivity.class));
                 break;
             case R.id.tv_register:
-                startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
+                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+                startActivityForResult(intent,0x003);
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data!=null){
+            if (requestCode == 0x003){
+            String phone =data.getStringExtra("phone");
+            String password =data.getStringExtra("password");
+                Log.i("12312312", "onActivityResult: "+phone+password);
+            et_phone_number.setText(phone);
+            et_password.setText(password);
+            }
         }
     }
 }

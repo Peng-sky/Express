@@ -1,5 +1,6 @@
 package com.example.peng.express.Activity;
 
+import android.app.ProgressDialog;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,6 +21,7 @@ public class SchoolActivity extends AppCompatActivity implements View.OnClickLis
     private Fragment send_fragment,take_fragment;
     private FragmentManager manager;
     private FragmentTransaction transaction;
+    private ProgressDialog dlg;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

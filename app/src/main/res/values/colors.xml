@@ -14,9 +14,19 @@
     <color name="top_bg">#39acfc</color>
     <color name="button">#166eab</color>
     <color name="title">#38aafb</color>
-    <color name="black">#111111</color>
+    <color name="black">#919191</color>
     <color name="btn_color">#ff6735</color>
     <color name="sc_text">#d7d7d7</color>
+
+    <!-- QRCode scanner color begin -->
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="result_view">#B0000000</color>
+    <color name="viewfinder_frame">#90FFFFFF</color>
+    <color name="result_point_color">#C0FFFF00</color>
+    <color name="laser_color">#0F0</color>
+    <color name="corner_color">#00FF00</color>
+    <!-- QRCode scanner color end -->
+
 
 
     <!-- Screens background color-->

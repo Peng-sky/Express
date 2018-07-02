@@ -19,7 +19,7 @@
             android:textColor="@color/title"
             android:textSize="20sp"
             android:layout_margin="20dp"
-            android:text="取件"/>
+            android:text="帮取"/>
 
         <TextView
             android:id="@+id/send_package"
@@ -30,7 +30,7 @@
             android:textSize="20sp"
             android:textColor="@color/sc_text"
             android:layout_margin="20dp"
-            android:text="寄件"/>
+            android:text="帮寄"/>
     </LinearLayout>
 
     <TextView

@@ -10,6 +10,7 @@
         android:background="@color/title">
 
         <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -33,10 +34,15 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_margin="@dimen/sc_order_details"
             android:orientation="horizontal">
 
@@ -55,7 +61,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
             android:layout_margin="@dimen/sc_order_details"
             android:layout_height="wrap_content">
 
@@ -72,12 +79,9 @@
                 android:text="15082111360" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/express_company"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/sc_order_details"
-            android:text="快递公司" />
+        </LinearLayout>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -97,8 +101,14 @@
                 android:layout_marginLeft="5dp"
                 android:text="80808080808080808" />
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/express_company"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/sc_order_details"
+                android:text="快递公司" />
 
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -108,7 +118,25 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="地址：" />
+                android:text="取件地址：" />
+
+            <TextView
+                android:id="@+id/take_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="校门口" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/sc_order_details"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="送达地址：" />
 
             <TextView
                 android:id="@+id/address"
@@ -126,7 +154,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="状态：" />
+                android:text="送达时间：" />
 
             <TextView
                 android:id="@+id/reach_time"

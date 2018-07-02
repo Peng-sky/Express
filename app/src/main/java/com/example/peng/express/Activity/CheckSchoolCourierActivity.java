@@ -33,27 +33,8 @@ public class CheckSchoolCourierActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_check_school_courier);
     }
-
-    //    @Override
-//    protected void onCreate(@Nullable Bundle savedInstanceState) {
-//        Log.d(TAG, "DemoApplication onCreate");
-//
-//        PushManager.getInstance().initialize(getApplicationContext(),com.example.peng.express.Service.DemoPushService.class);
-//        PushManager.getInstance().registerPushIntentService(getApplicationContext(), com.example.peng.express.Service.DemoIntentService.class);
-//
-//        if (handler == null) {
-//            handler = new DemoHandler();
-//        }
-//        super.onCreate();
-//    }
-
-
-
-
-
-
 
 }

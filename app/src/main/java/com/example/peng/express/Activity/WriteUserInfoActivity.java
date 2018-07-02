@@ -1,8 +1,12 @@
 package com.example.peng.express.Activity;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
@@ -14,6 +18,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.peng.express.Bean.Order;
 import com.example.peng.express.Bean.User;
 import com.example.peng.express.R;
 import com.google.gson.Gson;
@@ -23,7 +28,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -39,6 +47,7 @@ public class WriteUserInfoActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
     private Intent intent;
     private User user;
+    private ProgressDialog dlg;
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     @Override
@@ -50,11 +59,8 @@ public class WriteUserInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String info = getUserInfo();
-                try {
-                    postJson(info);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                postJson(info);
+
             }
         });
     }
@@ -73,16 +79,18 @@ public class WriteUserInfoActivity extends AppCompatActivity {
         et_info_address = findViewById(R.id.et_info_address);
         btn_info_confirm = findViewById(R.id.btn_info_confirm);
         radioGroup = findViewById(R.id.rg);
-        intent = getIntent();
-        et_info_phone_num.setText(intent.getStringExtra("phone"));
+        SharedPreferences sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+        String phone = sharedPreferences.getString("phone",null);
+        et_info_phone_num.setText(phone);
+
     }
 
     private String getUserInfo() {
         intent = getIntent();
-        String phone = intent.getStringExtra("phone");
-        String password = intent.getStringExtra("password");
         int radioButtonId = radioGroup.getCheckedRadioButtonId();
         radioButton = findViewById(radioButtonId);
+        String phone = et_info_phone_num.getText().toString();
+        String password = "默认";
         String username = et_info_username.getText().toString();
         String birthday = et_info_birthday.getText().toString();
         String email = et_info_email.getText().toString();
@@ -91,61 +99,59 @@ public class WriteUserInfoActivity extends AppCompatActivity {
         String sex = radioButton.getText().toString();
         String user_type = "0";
         Gson gson = new Gson();
-        User user = new User(phone, username, password, sex, birthday, email, province, address,user_type);
+        User user = new User(phone,password, username, sex, birthday, email, province, address,user_type);
         String info = gson.toJson(user);
         System.out.println(info);
         return info;
     }
 
-    private void postJson(final String info) throws IOException {
-        final Handler handler = new Handler() {
+    private void postJson(String json){
+        dlg = new ProgressDialog(this);
+        dlg.setIcon(R.mipmap.logo);
+        dlg.setMessage("加载中请稍后");
+        dlg.setProgressStyle(ProgressDialog.STYLE_SPINNER);//设置水平进度条
+        dlg.show();
+        RequestBody body = RequestBody.create(JSON,json);
+        OkHttpClient okHttpClient  = new OkHttpClient.Builder()
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(10,TimeUnit.SECONDS)
+                .readTimeout(10, TimeUnit.SECONDS)
+                .build();
+        final Request request = new Request.Builder()
+                .url(IP+"updateUser")
+                .post(body)
+                .build();
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
             @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                String name = msg.obj.toString();
+            public void onFailure(Call call, IOException e) {
+                System.out.println("连接服务器失败");
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
                 try {
-                    JSONObject jsonObject = new JSONObject(name);
-                    String n = jsonObject.optString("msg");
-                    if ("1".equals(n)) {
-                        Intent intent = new Intent(WriteUserInfoActivity.this, MainActivity.class);
-                        startActivity(intent);
+                    JSONObject jsonObject = new JSONObject(response.body().string());
+                    String result = jsonObject.optString("msg");
+                    if (result.equals("1")){
+                        //Toast 必须在主线程中进行
+                        //Toast 显示需要出现在一个线程的消息队列中.... 很隐蔽
+                        //因为toast的实现需要在activity的主线程才能正常工作，
+                        // 所以传统的非主线程不能使toast显示在actvity上，通过Handler可以使自定义线程运行于Ui主线程
+                        Looper.prepare();
+                        Toast.makeText(WriteUserInfoActivity.this,"修改成功",Toast.LENGTH_LONG).show();
+                        dlg.dismiss();
                         finish();
-                        Toast.makeText(WriteUserInfoActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(WriteUserInfoActivity.this, "注册失败，手机号已存在", Toast.LENGTH_SHORT).show();
+                        Looper.loop();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-        };
-        new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                //申明给服务端传递一个json串
-                //创建一个OkHttpClient对象
-                OkHttpClient okHttpClient = new OkHttpClient();
-                //创建一个RequestBody(参数1：数据类型 参数2传递的json串)
-                RequestBody requestBody = RequestBody.create(JSON, info);
-                //创建一个请求对象
-                Request request = new Request.Builder()
-                        .url(IP+"/Register")
-                        .post(requestBody)
-                        .build();
-                Response response = null;
-                try {
-                    response = okHttpClient.newCall(request).execute();
-                    if (response.isSuccessful()) {
-                        Message message = new Message();
-                        message.obj = response.body().string();
-                        System.out.println(message.obj);
-                        handler.sendMessage(message);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
+        });
+
     }
+
+
+
 }

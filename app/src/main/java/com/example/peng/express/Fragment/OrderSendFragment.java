@@ -1,6 +1,7 @@
 package com.example.peng.express.Fragment;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -26,6 +27,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.peng.express.Activity.DirectionActivity;
+import com.example.peng.express.Activity.SchoolSendDetialsActivity;
+import com.example.peng.express.Activity.SendOrderDetailsActivity;
 import com.example.peng.express.Activity.SenderAddressActivity;
 import com.example.peng.express.Bean.Order;
 import com.example.peng.express.R;
@@ -57,11 +60,11 @@ public class OrderSendFragment extends Fragment implements View.OnClickListener 
     private CheckBox cb_agree;
     private Button btn_send_confirm;
     private LinearLayout linear_address,linear_direction;
+    private ProgressDialog dlg;
 
     private String appkey = "";
     private String appsecret = "";
     private String appid = "";
-    private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -70,46 +73,6 @@ public class OrderSendFragment extends Fragment implements View.OnClickListener 
         initView(view);
         parseManifests();
         return view;
-    }
-
-    private void sendOrderToService(final String json) {
-        RequestBody body = RequestBody.create(JSON,json);
-        OkHttpClient okHttpClient  = new OkHttpClient.Builder()
-                .connectTimeout(10, TimeUnit.SECONDS)
-                .writeTimeout(10,TimeUnit.SECONDS)
-                .readTimeout(20, TimeUnit.SECONDS)
-                .build();
-        final Request request = new Request.Builder()
-                .url(IP+"Order")
-                .post(body)
-                .build();
-        Call call = okHttpClient.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                System.out.println("连接服务器失败");
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                Order order = new Order();
-                try {
-                    JSONObject jsonObject = new JSONObject(response.body().string());
-                    String result = jsonObject.optString("msg");
-                    if (result.equals("1")){
-                        //Toast 必须在主线程中进行
-                        //Toast 显示需要出现在一个线程的消息队列中.... 很隐蔽
-                        //因为toast的实现需要在activity的主线程才能正常工作，
-                        // 所以传统的非主线程不能使toast显示在actvity上，通过Handler可以使自定义线程运行于Ui主线程
-                        Looper.prepare();
-                        Toast.makeText(getActivity(),"订单创建成功",Toast.LENGTH_LONG).show();
-                        Looper.loop();
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
     }
 
     private String getOrder(){
@@ -143,7 +106,6 @@ public class OrderSendFragment extends Fragment implements View.OnClickListener 
             e.printStackTrace();
         }
     }
-
 
     private void initView(View view) {
                 tv_send_address =view.findViewById(R.id.tv_send_address);
@@ -231,7 +193,10 @@ public class OrderSendFragment extends Fragment implements View.OnClickListener 
                     et_package_amount.setText(count3+"");
                 break;
             case R.id.btn_send_confirm:
-                sendOrderToService(getOrder());
+                Intent intent2 = new Intent(getActivity(), SchoolSendDetialsActivity.class);
+                intent2.putExtra("school_details",getOrder());
+                startActivity(intent2);
+                getActivity().finish();
                 break;
         }
     }

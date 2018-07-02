@@ -1,5 +1,7 @@
 package com.example.peng.express.Fragment;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
 import android.support.annotation.NonNull;
@@ -12,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.peng.express.Activity.ScOrderDetialActivity;
 import com.example.peng.express.Bean.SchoolOrder;
 import com.example.peng.express.R;
 import com.google.gson.Gson;
@@ -20,6 +23,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
@@ -33,8 +38,9 @@ import static com.example.peng.express.Activity.LoginActivity.IP;
 import static com.example.peng.express.Activity.WriteUserInfoActivity.JSON;
 
 public class SCTakePackageFragment extends Fragment {
-    private EditText username,track_number,express_company,phone,address,time;
+    private EditText username,track_number,express_company,phone,take_add,address,time;
     private Button commit;
+    private ProgressDialog dlg;
 
     @Nullable
     @Override
@@ -45,46 +51,13 @@ public class SCTakePackageFragment extends Fragment {
         commit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendOrderToService(getData());
+                Intent intent = new Intent(getActivity(), ScOrderDetialActivity.class);
+                intent.putExtra("details",getData());
+                startActivity(intent);
             }
         });
 
         return view;
-    }
-
-    private void sendOrderToService(final String json) {
-        RequestBody body = RequestBody.create(JSON,json);
-        OkHttpClient okHttpClient  = new OkHttpClient.Builder()
-                .connectTimeout(10, TimeUnit.SECONDS)
-                .writeTimeout(10,TimeUnit.SECONDS)
-                .readTimeout(20, TimeUnit.SECONDS)
-                .build();
-        final Request request = new Request.Builder()
-                .url(IP+"insetSC")
-                .post(body)
-                .build();
-        Call call = okHttpClient.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                System.out.println("连接服务器失败");
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    JSONObject jsonObject = new JSONObject(response.body().string());
-                    String result = jsonObject.optString("msg");
-                    if (result.equals("1")){
-                        Looper.prepare();
-                        Toast.makeText(getActivity(),"订单创建成功",Toast.LENGTH_LONG).show();
-                        Looper.loop();
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
     }
 
     private void initView(View view) {
@@ -92,6 +65,7 @@ public class SCTakePackageFragment extends Fragment {
         track_number = view.findViewById(R.id.track_number);
         express_company = view.findViewById(R.id.express_company);
         phone = view.findViewById(R.id.phone);
+        take_add = view.findViewById(R.id.take_add);
         address = view.findViewById(R.id.address);
         commit = view.findViewById(R.id.commit);
         time = view.findViewById(R.id.time);
@@ -102,11 +76,16 @@ public class SCTakePackageFragment extends Fragment {
         String number = track_number.getText().toString();
         String company = express_company.getText().toString();
         String phones = phone.getText().toString();
-        String commits = commit.getText().toString();
+        String take = take_add.getText().toString();
+        String add = address.getText().toString();
         String remarks = time.getText().toString();
-        SchoolOrder.Body so = new SchoolOrder.Body(user,phones,number,company,commits,remarks);
+
+        SchoolOrder.Body so = new SchoolOrder.Body(user,phones,number,company,take,add,remarks);
+        List<SchoolOrder.Body> bodyList = new ArrayList<>();
+        bodyList.add(so);
+
         Gson gson = new Gson();
-        String json = gson.toJson(so);
+        String json = gson.toJson(bodyList);
         return json;
     }
 }

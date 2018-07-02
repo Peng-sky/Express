@@ -62,6 +62,22 @@
 
     </LinearLayout>
 
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_margin="@dimen/scOrder"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="取件地址："/>-->
+        <!--<TextView-->
+            <!--android:id="@+id/take_add"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="成都职业技术学院高新校区北校门"/>-->
+
+    <!--</LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -71,7 +87,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="地址："/>
+            android:text="收件地址："/>
         <TextView
             android:id="@+id/address"
             android:layout_width="wrap_content"
@@ -88,7 +104,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="状态："/>
+            android:text="时间："/>
         <TextView
             android:id="@+id/reach_time"
             android:layout_width="wrap_content"

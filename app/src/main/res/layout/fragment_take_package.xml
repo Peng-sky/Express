@@ -10,6 +10,20 @@
         android:padding="@dimen/sendRPadding">
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray"
+            android:gravity="center"
+            android:text="请填写取件信息"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/sc_order_details">
+
+        <TextView
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
@@ -28,7 +42,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/sendRPadding">
+        android:padding="@dimen/sc_order_details">
 
         <TextView
             android:layout_width="70dp"
@@ -50,14 +64,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/sendRPadding">
+        android:padding="@dimen/sc_order_details">
 
         <TextView
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:textSize="@dimen/sendRequire"
             android:textColor="@color/black"
-            android:text="快递公司  "/>
+            android:text="快递公司"/>
 
         <EditText
             android:id="@+id/express_company"
@@ -73,7 +87,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/sendRPadding">
+        android:padding="@dimen/sc_order_details">
 
         <TextView
             android:layout_width="70dp"
@@ -95,14 +109,37 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/sendRPadding">
+        android:padding="@dimen/sc_order_details">
 
         <TextView
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:textSize="@dimen/sendRequire"
             android:textColor="@color/black"
-            android:text="地址"/>
+            android:text="取件地址"/>
+
+        <EditText
+            android:id="@+id/take_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input_shape"
+            android:textCursorDrawable="@drawable/edit_cursor_color"
+            android:textSize="@dimen/sendRequire"
+            android:textColor="@color/black"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/sc_order_details">
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sendRequire"
+            android:textColor="@color/black"
+            android:text="收件地址"/>
 
         <EditText
             android:id="@+id/address"
@@ -116,7 +153,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/sendRPadding">
+        android:padding="@dimen/sc_order_details">
 
         <TextView
             android:layout_width="70dp"
@@ -140,13 +177,12 @@
         android:layout_width="match_parent"
         android:gravity="bottom"
         android:layout_weight="1"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <Button
             android:id="@+id/commit"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="2dp"
             android:textSize="20sp"
             android:gravity="center"
             android:background="@color/title"

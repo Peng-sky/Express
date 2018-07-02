@@ -1,7 +1,7 @@
 package com.example.peng.express.Bean;
 
 public class Order {
-    private int id;
+    private String user_phone;
     private String tracking_number;
     private String sender;
     private String sender_address;

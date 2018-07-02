@@ -9,24 +9,25 @@ public class SchoolOrder {
 
     public static class Body implements Serializable{
 
-        private int id;
         private String sc_username;
         private String sc_phone_number;
         private String username;
         private String phone_number;
         private String express_company;
         private String track_number;
+        private String take_add;
         private String address;
         private String state;
 
         public Body(){}
 
-        public Body( String username, String phone, String express_company, String track_number, String address, String state) {
+        public Body( String username, String phone, String express_company, String track_number,String take_add, String address, String state) {
 
             this.username = username;
             this.phone_number = phone;
             this.express_company = express_company;
             this.track_number = track_number;
+            this.take_add = take_add;
             this.address = address;
             this.state = state;
         }
@@ -61,6 +62,14 @@ public class SchoolOrder {
 
         public void setTrack_number(String track_number) {
             this.track_number = track_number;
+        }
+
+        public String getTake_add() {
+            return take_add;
+        }
+
+        public void setTake_add(String take_add) {
+            this.take_add = take_add;
         }
 
         public String getAddress() {
