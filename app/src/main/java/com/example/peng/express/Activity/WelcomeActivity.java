@@ -61,6 +61,7 @@ public class WelcomeActivity extends AppCompatActivity {
         layouts = new int[]{
                 R.layout.wejm1,
                 R.layout.wejm2,
+                R.layout.wejm3,
         };
         //添加点
         addBottomDots(0);

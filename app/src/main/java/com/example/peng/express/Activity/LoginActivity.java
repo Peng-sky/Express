@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button btn_login;
     private String  phone= "";
     private String  password= "";
-    public static final String IP = "http://192.168.137.139:8080/servlet/";
+    public static final String IP = "http://172.17.156.172:8080/servlet/";
     private ProgressDialog dlg;
 
 
@@ -50,7 +50,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         initView();
         initEvent();
     }
-
 
     private void initEvent() {
         btn_login.setOnClickListener(this);
@@ -91,21 +90,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     }
                     @Override
                     public void onResponse(String response, int id) {
-//                        String name=response.toString();
-//                        try {
-//                            JSONObject jsonObject = new JSONObject(name);
-//                            String n = jsonObject.optString("phone_number");
-//                            if (phone.equals(n)){
-//                                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-//                                intent.putExtra("phone_number",n);
-//                                startActivity(intent);
-//                                Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
-//                            }else{
-//                                Toast.makeText(LoginActivity.this,"登录失败，用户名或密码错误",Toast.LENGTH_SHORT).show();
-//                            }
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//
                         Gson gson = new Gson();
                         User user = gson.fromJson(response,new TypeToken<User>(){}.getType());
                         SharedPreferences sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
@@ -135,11 +119,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_login:
-
                 login();
-//                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-//                startActivity(intent);
-//                Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tv_forget_password:
                 startActivity(new Intent(LoginActivity.this,FindPasswordActivity.class));

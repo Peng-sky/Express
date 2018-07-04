@@ -92,8 +92,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="#fccccc">
+        android:layout_height="130dp"
+        android:background="@color/white_bg">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -103,41 +103,41 @@
                 android:id="@+id/banner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_marginTop="3dip"
-                android:layout_gravity="bottom"
-                android:gravity="center"
-                android:orientation="horizontal" >
-
-                <View
-                    android:id="@+id/dot_0"
-                    android:layout_width="10dip"
-                    android:layout_height="10dip"
-                    android:layout_marginLeft="2dip"
-                    android:layout_marginRight="2dip"
-                    android:background="@mipmap/dot_focused"/>
-
-                <View
-                    android:id="@+id/dot_1"
-                    android:layout_width="10dip"
-                    android:layout_height="10dip"
-                    android:layout_marginLeft="2dip"
-                    android:layout_marginRight="2dip"
-                    android:background="@mipmap/dot_normal"/>
-                <View
-                    android:id="@+id/dot_2"
-                    android:layout_width="10dip"
-                    android:layout_height="10dip"
-                    android:layout_marginLeft="2dip"
-                    android:layout_marginRight="2dip"
-                    android:background="@mipmap/dot_normal"/>
-
-            </LinearLayout>
-
         </FrameLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_gravity="bottom"
+        android:background="@color/white_bg"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/dot_0"
+            android:layout_width="15dip"
+            android:layout_height="10dip"
+            android:layout_marginLeft="2dip"
+            android:layout_marginRight="2dip"
+            android:background="@mipmap/dot_focused" />
+
+        <View
+            android:id="@+id/dot_1"
+            android:layout_width="15dip"
+            android:layout_height="10dip"
+            android:layout_marginLeft="2dip"
+            android:layout_marginRight="2dip"
+            android:background="@mipmap/dot_normal" />
+
+        <View
+            android:id="@+id/dot_2"
+            android:layout_width="15dip"
+            android:layout_height="10dip"
+            android:layout_marginLeft="2dip"
+            android:layout_marginRight="2dip"
+            android:background="@mipmap/dot_normal" />
 
     </LinearLayout>
 

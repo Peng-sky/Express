@@ -12,9 +12,10 @@ public class User implements Serializable {
     private String email;
     private String addressPUA;
     private String address_details;
+    private String image;
     private String user_type;
 
-    public User(String phone,String password, String username, String sex, String birthday, String email, String province, String address,String user_type) {
+    public User(String phone,String password, String username, String sex, String birthday, String email, String province, String address,String image,String user_type) {
         this.phone_number = phone;
         this.username = username;
         this.password = password;
@@ -23,6 +24,7 @@ public class User implements Serializable {
         this.email = email;
         this.addressPUA = province;
         this.address_details = address;
+        this.image = image;
         this.user_type = user_type;
     }
 
@@ -106,4 +108,11 @@ public class User implements Serializable {
         this.user_type = user_type;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }

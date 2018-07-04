@@ -1,6 +1,7 @@
 package com.example.peng.express.Fragment;
 
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.peng.express.Activity.ScOrderDetialActivity;
 import com.example.peng.express.Bean.SchoolOrder;
+import com.example.peng.express.Dialog.TimePicker;
 import com.example.peng.express.R;
 import com.google.gson.Gson;
 
@@ -24,6 +26,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -41,6 +44,8 @@ public class SCTakePackageFragment extends Fragment {
     private EditText username,track_number,express_company,phone,take_add,address,time;
     private Button commit;
     private ProgressDialog dlg;
+    private Calendar calendar =Calendar.getInstance();
+
 
     @Nullable
     @Override
@@ -69,6 +74,15 @@ public class SCTakePackageFragment extends Fragment {
         address = view.findViewById(R.id.address);
         commit = view.findViewById(R.id.commit);
         time = view.findViewById(R.id.time);
+        time.setFocusable(false);
+        time.setClickable(true);
+        time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                TimePicker.showTimePickerDialog(getActivity(),android.R.style.Theme_Holo_Light_Dialog,time,calendar);
+            }
+        });
     }
 
     private String getData(){
